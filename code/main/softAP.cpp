@@ -98,7 +98,7 @@ void wifi_init_softAP(void)
 
 void SendHTTPResponse(httpd_req_t *req)
 {
-    std::string message = "<h1>AI-on-the-edge - BASIC SETUP</h1><p>This is an access point with a minimal server to setup the minimum required files and information on the device and the SD-card. ";
+    std::string message = "<h1>SLIM - BASIC SETUP</h1><p>This is an access point with a minimal server to setup the minimum required files and information on the device and the SD-card. ";
     message += "This mode is always started if one of the following files is missing: /wlan.ini or the /config/config.ini.<p>";
     message += "The setup is done in 3 steps: 1. upload full inital configuration (sd-card content), 2. store WLAN access information, 3. reboot (and connect to WLANs)<p><p>";
     message += "Please follow the below instructions.<p>";
@@ -271,7 +271,7 @@ esp_err_t config_ini_handler(httpd_req_t *req)
     FILE* configfilehandle = fopen(WLAN_CONFIG_FILE, "w");
 
     text  = ";++++++++++++++++++++++++++++++++++\n";
-    text += "; AI on the edge - WLAN configuration\n";
+    text += "; SLIM - WLAN configuration\n";
     text += "; ssid: Name of WLAN network (mandatory), e.g. \"WLAN-SSID\"\n";
     text += "; password: Password of WLAN network (mandatory), e.g. \"PASSWORD\"\n\n";
     fputs(text.c_str(), configfilehandle);

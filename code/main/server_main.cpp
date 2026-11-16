@@ -256,7 +256,7 @@ esp_err_t hello_main_handler(httpd_req_t *req)
             LogFile.WriteToFile(ESP_LOG_ERROR, TAG, "We have a critical error, not serving main page!");
 
             char buf[20];
-            std::string message = "<h1>AI on the Edge Device</h1><b>We have one or more critical errors:</b><br>";
+            std::string message = "<h1>SLIM</h1><b>We have one or more critical errors:</b><br>";
 
             for (int i = 0; i < 32; i++) {
                 if (isSetSystemStatusFlag((SystemStatusFlag_t)(1<<i))) {
