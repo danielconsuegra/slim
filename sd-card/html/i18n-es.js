@@ -933,6 +933,8 @@
   // Reglas para textos que llevan partes variables (estados, errores...)
   var R = [
     [/^Flow finished \((.*)\)$/, "Proceso terminado ($1)"],
+    // Estado del proceso con hora: "Take Image (11:27:30)", "Aligning (..)"...
+    [/^(.+?) \((\d{1,2}:\d{2}:\d{2})\)$/, function (m, st, t) { var x = D.hasOwnProperty(st) ? D[st] : null; return x === null ? m : x + " (" + t + ")"; }],
     [/^Rate too high - Read:\s*(.*?)\s*- Pre:\s*(.*?)\s*- Rate:\s*(.*)$/, "Cambio demasiado alto - Leído: $1 - Previo: $2 - Cambio: $3"],
     [/^Neg\. Rate - Read:\s*(.*?)\s*- Raw:\s*(.*?)\s*- Pre:\s*(.*?)$/, "Cambio negativo - Leído: $1 - Bruto: $2 - Previo: $3"],
     [/^Date\/Time on device: (.*)$/, "Fecha/hora del dispositivo: $1"],
@@ -956,6 +958,7 @@
 
   // Textos dinamicos exactos (firmware y JavaScript de las paginas)
   var EXTRA = {
+    "Take Image": "Tomando imagen",
     "Aligning": "Alineando",
     "Digitization of ROIs": "Digitalizando ROIs",
     "Sending MQTT": "Enviando MQTT",
