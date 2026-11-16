@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en">
+<html lang="es" xml:lang="es">
 
 <head>
     <meta charset="UTF-8" />
-    <title>Alignment markers</title>
+    <title>Marcas de alineación</title>
  
     <style>
         h1 {font-size: 2em;}
@@ -99,6 +99,11 @@
     <script type="text/javascript" src="jquery-3.6.0.min.js?v=$COMMIT_HASH"></script>
     <script type="text/javascript" src="firework.js?v=$COMMIT_HASH"></script>
 
+    <!-- SLIM: tema visual y traduccion de mensajes dinamicos -->
+    <script>window.__slimThemeLoaded=true;try{var p=localStorage.getItem("slim-theme");if(p==="dark"||(!p&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("slim-dark");}catch(e){}</script>
+    <link rel="stylesheet" href="modern.css?v=$COMMIT_HASH">
+    <script type="text/javascript" src="modern.js?v=$COMMIT_HASH"></script>
+    <script type="text/javascript" src="i18n-es.js?v=$COMMIT_HASH"></script>
 </head>
 
 <body style="font-family: arial; padding: 0px 10px;">
@@ -106,25 +111,22 @@
         <div id="overlaytext"></div>
     </div>
 	
-    <h2>Alignment Markers</h2>
+    <h2>Marcas de alineación</h2>
     <details id="desc_details" style="font-size:16px">
-        <summary><b>CLICK HERE</b> for usage description. More infos in documentation:   
-            <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/Alignment/ target=_blank>Alignment</a>
+        <summary><b>HAZ CLIC AQUÍ</b> para ver la descripción de uso. Más información en la documentación:   
+            <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/Alignment/ target=_blank>Alineación</a>
         </summary>
         <p>
-            Two alignment markers with clear contour and proper contrast are needed to identify unique "fix points" on the image. 
-            The marker area should be not be part of the variable area of ROI evaluation. Please find more information in documenation:
-            <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/Alignment/ target=_blank>Alignment</a>
+            Se necesitan dos marcas de alineación con contorno claro y buen contraste para identificar "puntos fijos" únicos en la imagen. La zona de la marca no debe formar parte de la zona variable que evalúan las ROIs. Más información en la documentación:
+            <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/Alignment/ target=_blank>Alineación</a>
         </p>
         <p>
-            Select an alignment marker area using drag and dop feature by mouse operation or by manually entering the coordinates and sizes in the fields below the image.
-            After you selected a suitable first alignment marker area, push the <b>"Update Marker"</b> button. Switch to second alignment marker with <b>"Marker"</b>
-            and repeat the procedure.
+            Selecciona la zona de una marca de alineación arrastrando con el ratón o escribiendo manualmente las coordenadas y tamaños en los campos bajo la imagen. Cuando tengas una primera zona adecuada, pulsa el botón <b>"Actualizar marca"</b> . Cambia a la segunda marca con <b>"Marca"</b>
+            y repite el procedimiento.
         </p>
         <p>
-            After definition of both alignment marker is completed don't forget to save with the <b>"Save New Marker"</b> button!<br>
-            <b>NOTE:</b> There is no need to perform a reboot after every saving or step. It's sufficient to reboot after all configuration steps 
-            (reference image, alignment, ROI configuration) are completed to activate new configuration.
+            Cuando hayas definido ambas marcas, no olvides guardar con el botón <b>"Guardar nueva marca"</b> .<br>
+            <b>NOTA:</b> No hace falta reiniciar después de cada guardado o paso. Basta con reiniciar al terminar todos los pasos de configuración (imagen de referencia, alineación, ROIs) para activar la nueva configuración.
         </p>
     </details>
     <hr />
@@ -137,19 +139,19 @@
         </colgroup>
 	
         <tr>
-            <td>Marker: 
+            <td>Marca: 
                 <select id="index" name="reference" onchange="ChangeSelection()">
                     <option value="0" selected>Marker 1</option>
                     <option value="1" >Marker 2</option>
                 </select>
             </td>
-            <td colspan="2" style="padding-left: 22px; color: grey;">Filename: <output type="text" name="name" id="name" onchange="namechanged()"></td>
+            <td colspan="2" style="padding-left: 22px; color: grey;">Archivo: <output type="text" name="name" id="name" onchange="namechanged()"></td>
         </tr>
 	  
         <tr>
             <td style="padding-top: 10px">x: <input type="number" name="refx" id="refx" step=1 onchange="valuemanualchanged()"></td>
             <td style="padding-top: 10px">dx: <input type="number" name="refdx" id="refdx" step=1 onchange="valuemanualchanged()"></td>
-            <td rowspan="2" style="padding-top: 10px;"><button style="color:black;" type="button" class="button" id="updatemarker" onclick="CutOutReference()">Update Marker</button></td>	
+            <td rowspan="2" style="padding-top: 10px;"><button style="color:black;" type="button" class="button" id="updatemarker" onclick="CutOutReference()">Actualizar marca</button></td>	
         </tr>
 	  
         <tr>
@@ -158,9 +160,9 @@
         </tr>
 	  
         <tr>
-            <td style="vertical-align: bottom;">Selected Image Area:</td>
-            <td style="vertical-align: bottom;">Resulting Marker:</td>
-            <td><button style="color:black;" type="button" class="button" id="enhancecontrast" onclick="EnhanceContrast()">Enhance Image Contrast</button></td>	
+            <td style="vertical-align: bottom;">Zona de imagen seleccionada:</td>
+            <td style="vertical-align: bottom;">Marca resultante:</td>
+            <td><button style="color:black;" type="button" class="button" id="enhancecontrast" onclick="EnhanceContrast()">Mejorar contraste de imagen</button></td>	
         </tr> 
 	  
         <tr>
@@ -169,10 +171,10 @@
         </tr>
 	  
         <tr>
-            <td style="vertical-align:bottom;"><b>Reference Image:</b></td>
+            <td style="vertical-align:bottom;"><b>Imagen de referencia:</b></td>
             <td></td>
             <td>
-                <button style="font-weight:bold; color:black;" type="submit" class="button" id="savemarker" onclick="SaveToConfig()">Save New Marker</button>
+                <button style="font-weight:bold; color:black;" type="submit" class="button" id="savemarker" onclick="SaveToConfig()">Guardar nueva marca</button>
             </td>
         </tr>
 	  
@@ -287,7 +289,7 @@
                 while (true) {
                     if (durchlaufe > 10) {
                         document.getElementById("overlay").style.display = "none";
-                        firework.launch('Enhancing Image Contrast aborted, timeout!', 'danger', 5000);
+                        firework.launch('Mejora de contraste cancelada: ¡tiempo agotado!', 'danger', 5000);
                         return;
                     }
 		
@@ -430,7 +432,7 @@
             EnDisableItem(false, "enhancecontrast", true);
 
             if (!loadConfig(domainname)) {
-                firework.launch('Configuration could not be loaded! Please reload the page!', 'danger', 30000);
+                firework.launch('¡No se pudo cargar la configuración! Recarga la página.', 'danger', 30000);
                 return;
             }
 
@@ -480,7 +482,7 @@
                 while (true) {
                     if (durchlaufe > 10) {
                         document.getElementById("overlay").style.display = "none";
-                        firework.launch('Updating marker aborted, timeout!', 'danger', 5000);
+                        firework.launch('Actualización de marca cancelada: ¡tiempo agotado!', 'danger', 5000);
                         return;
                     }
 

@@ -47,8 +47,8 @@ function LoadHostname() {
     xhttp.addEventListener('load', function(event) {
         if (xhttp.status >= 200 && xhttp.status < 300) {
             hostname = xhttp.responseText;
-                document.title = hostname + " - AI on the edge";
-                document.getElementById("id_title").innerHTML  = "Digitizer - AI on the edge - " + hostname;
+                document.title = "SLIM";
+                document.getElementById("id_title").innerHTML  = "SLIM";
         } 
         else {
                 console.warn(request.statusText, request.responseText);
@@ -139,8 +139,8 @@ function compareVersions() {
     console.log("FW Hash: " + fWGitHash + ", Web UI Hash: " + webUiHash);
     
     if (fWGitHash != webUiHash) {
-        firework.launch("The version of the web interface (" + webUiHash + 
-            ") does not match the firmware version (" + 
-            fWGitHash + ")! It is suggested to keep them on the same version!", 'warning', 30000);
+        firework.launch("La versión de la interfaz web (" + webUiHash +
+            ") no coincide con la del firmware (" +
+            fWGitHash + "). Se recomienda usar la misma versión.", 'warning', 30000);
     }
 }

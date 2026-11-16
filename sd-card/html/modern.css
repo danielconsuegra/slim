@@ -1,0 +1,1061 @@
+/* ==========================================================================
+   SLIM - Tema visual de la interfaz web
+   --------------------------------------------------------------------------
+   Hoja de estilos principal de SLIM. Se enlaza al final del <head> de cada
+   pagina, despues de los estilos propios de la pagina.
+
+   Reglas de seguridad aplicadas:
+   - No se cambia el tamano de <canvas> ni de las imagenes de referencia
+     (las paginas de ROIs/alineacion dependen de coordenadas exactas).
+   - No se toca la opacidad/posicion de .firework (la anima firework.js).
+   - .invalid-input conserva su resaltado de validacion.
+   ========================================================================== */
+
+:root {
+  --slim-bg:            #eef2f7;
+  --slim-surface:       #ffffff;
+  --slim-surface-2:     #f6f8fb;
+  --slim-border:        #dbe2ea;
+  --slim-text:          #1e293b;
+  --slim-text-muted:    #64748b;
+  --slim-primary:       #0ea5e9;
+  --slim-primary-600:   #0284c7;
+  --slim-primary-700:   #0369a1;
+  --slim-accent:        #6366f1;
+  --slim-success:       #16a34a;
+  --slim-danger:        #dc2626;
+  --slim-warning:       #f59e0b;
+  --slim-header-1:      #0f172a;
+  --slim-header-2:      #1e3a5f;
+  --slim-heading:       #0f172a;
+  --slim-input-border:  #cbd5e1;
+  --slim-disabled-bg:   #f1f5f9;
+  --slim-code-bg:       #eef4fb;
+  --slim-code-fg:       #0b4a6f;
+  --slim-switch-off:    #cbd5e1;
+  --slim-knob:          #ffffff;
+  --slim-seg-bg:        #e6ebf2;
+  --slim-seg-hover:     #d7dee8;
+  --slim-radius-sm:     8px;
+  --slim-radius:        12px;
+  --slim-radius-lg:     16px;
+  --slim-shadow-sm:     0 1px 2px rgba(15, 23, 42, .06), 0 1px 3px rgba(15, 23, 42, .08);
+  --slim-shadow:        0 4px 14px rgba(15, 23, 42, .08), 0 2px 6px rgba(15, 23, 42, .06);
+  --slim-shadow-lg:     0 18px 40px rgba(15, 23, 42, .16), 0 6px 14px rgba(15, 23, 42, .08);
+  --slim-ring:          0 0 0 3px rgba(14, 165, 233, .28);
+  --slim-font:          "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --slim-mono:          ui-monospace, "Cascadia Code", Consolas, "Courier New", monospace;
+  --slim-ease:          cubic-bezier(.2, .8, .2, 1);
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes slim-page-in   { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes slim-menu-in   { from { opacity: 0; transform: translateY(-6px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes slim-sub-in    { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: none; } }
+@keyframes slim-float     { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes slim-shine     { from { background-position: 0% 50%; } to { background-position: 200% 50%; } }
+@keyframes slim-progress  { 0% { transform: translateX(-100%); } 100% { transform: translateX(250%); } }
+@keyframes slim-flash     { 0% { background-color: rgba(14, 165, 233, .28); } 100% { background-color: transparent; } }
+@keyframes slim-pulse-dot { 0%, 100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, .5); } 50% { box-shadow: 0 0 0 6px rgba(22, 163, 74, 0); } }
+
+/* ---------- Base (todas las paginas) ---------- */
+html {
+  background: var(--slim-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--slim-font) !important;
+  color: var(--slim-text);
+  line-height: 1.45;
+  animation: slim-page-in .35s var(--slim-ease) both;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--slim-font);
+  color: var(--slim-heading);
+  letter-spacing: -.01em;
+}
+h1 { font-weight: 700; }
+h2 { font-weight: 650; }
+h3, h4 { font-weight: 600; }
+h4 { color: var(--slim-primary-700); }
+
+p, li, td, th, label, span { font-family: var(--slim-font); }
+
+a {
+  color: var(--slim-primary-600);
+  text-decoration: none;
+  transition: color .15s ease;
+}
+a:hover { color: var(--slim-accent); text-decoration: underline; }
+
+code {
+  font-family: var(--slim-mono);
+  font-size: .9em;
+  background: var(--slim-code-bg);
+  color: var(--slim-code-fg);
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--slim-border), transparent);
+  margin: 14px 0;
+}
+
+::selection { background: rgba(14, 165, 233, .25); }
+
+/* Barra de desplazamiento */
+* { scrollbar-width: thin; scrollbar-color: #b6c3d1 transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #c3cfdc; border-radius: 10px; border: 2px solid transparent; background-clip: content-box; }
+::-webkit-scrollbar-thumb:hover { background: #9fb0c2; background-clip: content-box; border: 2px solid transparent; }
+
+/* ---------- Detalles desplegables ("CLICK HERE for usage description") ---------- */
+details {
+  background: var(--slim-surface-2);
+  border: 1px solid var(--slim-border);
+  border-radius: var(--slim-radius);
+  padding: 8px 14px;
+  margin: 8px 0;
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+details[open] { box-shadow: var(--slim-shadow-sm); border-color: #c7d6e6; }
+summary { cursor: pointer; color: var(--slim-text); }
+summary:hover { color: var(--slim-primary-700); }
+
+/* ---------- Campos de formulario ---------- */
+input[type=text],
+input[type=number],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=time],
+select,
+textarea {
+  font-family: var(--slim-font);
+  color: var(--slim-text);
+  background-color: var(--slim-surface);
+  border: 1px solid var(--slim-input-border) !important;
+  border-radius: var(--slim-radius-sm);
+  padding: 5px 8px;
+  transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+  outline: none;
+}
+input[type=text]:hover,
+input[type=number]:hover,
+input[type=password]:hover,
+select:hover,
+textarea:hover { border-color: #94a3b8 !important; }
+
+input[type=text]:focus,
+input[type=number]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=url]:focus,
+input[type=time]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--slim-primary) !important;
+  box-shadow: var(--slim-ring);
+}
+
+input:disabled, select:disabled, textarea:disabled {
+  background-color: var(--slim-disabled-bg);
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+textarea { font-family: var(--slim-mono); }
+
+/* La validacion original debe seguir viendose */
+.invalid-input,
+input.invalid-input,
+select.invalid-input {
+  background-color: #fde68a !important;
+  border-color: var(--slim-warning) !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, .25) !important;
+}
+
+input[type=radio] {
+  accent-color: var(--slim-primary-600);
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+/* ---------- Casillas -> interruptor (switch) ----------
+   Es el mismo <input type="checkbox">: conserva id, onclick y .checked.
+   Solo cambia su dibujo. */
+/* Estilo "panel de control": pista oscura + boton; encendido = pista azul
+   translucida y boton azul brillante. Se aplica igual a las casillas y a
+   los interruptores que sustituyen desplegables activado/desactivado. */
+input[type=checkbox],
+.slim-switch {
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 46px;
+  height: 26px;
+  min-height: 0;
+  margin: 0 10px 0 0;
+  padding: 0;
+  vertical-align: middle;
+  border-radius: 999px;
+  background: var(--slim-switch-off);
+  border: 0;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, .22);
+  cursor: pointer;
+  outline: none;
+  transform: none;
+  transition: background-color .25s ease, box-shadow .25s ease;
+}
+input[type=checkbox]::before,
+.slim-switch::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--slim-knob);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .35);
+  transition: transform .3s cubic-bezier(.3, 1.4, .5, 1), width .2s ease, background-color .25s ease, box-shadow .25s ease;
+}
+input[type=checkbox]:hover,
+.slim-switch:hover { filter: brightness(1.06); transform: none; box-shadow: inset 0 1px 3px rgba(0, 0, 0, .22); }
+input[type=checkbox]:active::before,
+.slim-switch:active::before { width: 24px; }
+input[type=checkbox]:checked,
+.slim-switch.on {
+  background: rgba(14, 165, 233, .32);
+  box-shadow: inset 0 0 0 1px rgba(14, 165, 233, .45);
+}
+input[type=checkbox]:checked::before,
+.slim-switch.on::before {
+  transform: translateX(20px);
+  background: var(--slim-primary);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, .18), 0 2px 8px rgba(14, 165, 233, .55);
+}
+input[type=checkbox]:checked:active::before,
+.slim-switch.on:active::before { transform: translateX(16px); }
+input[type=checkbox]:focus-visible,
+.slim-switch:focus-visible { box-shadow: var(--slim-ring); }
+input[type=checkbox]:disabled,
+.slim-switch:disabled,
+.slim-switch.is-disabled { opacity: .45; cursor: not-allowed; filter: none; }
+
+/* Etiquetas de 2 lineas junto a un interruptor: sangria francesa para que
+   la segunda linea quede alineada con el texto y no bajo el switch */
+td:has(> input[type=checkbox]:first-child) {
+  padding-left: 66px !important;
+  text-indent: -56px;
+}
+td:has(> input[type=checkbox]:first-child) > input[type=checkbox] {
+  text-indent: 0;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+input[type=range] { accent-color: var(--slim-primary-600); cursor: pointer; }
+
+/* ---------- Botones ---------- */
+button,
+input[type=button],
+input[type=submit],
+input[type=reset],
+.button {
+  font-family: var(--slim-font);
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, var(--slim-primary) 0%, var(--slim-primary-600) 55%, var(--slim-accent) 140%);
+  background-size: 160% 160%;
+  border: 0;
+  border-radius: 10px;
+  padding: 7px 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, .30), inset 0 1px 0 rgba(255, 255, 255, .18);
+  transition: transform .15s var(--slim-ease), box-shadow .2s ease, background-position .4s ease, filter .2s ease;
+  /* Los textos en espanol son mas largos: permitir 2 lineas en botones de ancho fijo */
+  white-space: normal;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+  height: auto;
+  min-height: 32px;
+}
+button:hover,
+input[type=button]:hover,
+input[type=submit]:hover,
+input[type=reset]:hover,
+.button:hover {
+  transform: translateY(-1px);
+  background-position: 100% 0;
+  box-shadow: 0 8px 18px rgba(2, 132, 199, .32), inset 0 1px 0 rgba(255, 255, 255, .22);
+}
+button:active,
+input[type=button]:active,
+input[type=submit]:active,
+.button:active {
+  transform: translateY(0) scale(.98);
+  box-shadow: 0 1px 3px rgba(2, 132, 199, .35);
+}
+button:focus-visible,
+input[type=button]:focus-visible,
+input[type=submit]:focus-visible,
+.button:focus-visible { outline: none; box-shadow: var(--slim-ring), 0 2px 6px rgba(2, 132, 199, .3); }
+
+button:disabled,
+input[type=button]:disabled,
+input[type=submit]:disabled,
+.button:disabled {
+  background: #cbd5e1;
+  color: #f8fafc;
+  box-shadow: none;
+  transform: none;
+  cursor: not-allowed;
+}
+
+/* Boton "reboot now" de los avisos: se mantiene rojo */
+#reboot_button {
+  background: linear-gradient(135deg, #ef4444, #b91c1c) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(185, 28, 28, .35);
+  cursor: pointer;
+}
+
+/* ---------- Avisos emergentes (firework.js) ----------
+   Solo colores y forma: firework.js controla opacidad y posicion. */
+.firework {
+  border-radius: var(--slim-radius) !important;
+  padding: 10px 14px !important;
+  box-shadow: var(--slim-shadow-lg);
+  backdrop-filter: blur(6px);
+  font-family: var(--slim-font);
+  font-size: 105% !important;
+  border: 1px solid rgba(255, 255, 255, .18);
+}
+.firework.success { background-color: rgba(22, 163, 74, .94) !important; }
+.firework.danger  { background-color: rgba(220, 38, 38, .94) !important; }
+.firework.warning { background-color: rgba(245, 158, 11, .95) !important; color: #3b2a00 !important; }
+
+/* ---------- Imagenes y canvas ----------
+   Solo sombra y esquinas: NUNCA borde, padding ni tamano (rompe coordenadas). */
+canvas {
+  border-radius: 10px;
+  box-shadow: var(--slim-shadow);
+}
+
+/* ---------- Icono de ayuda (help.png) ----------
+   Se sustituye el dibujo por un icono vectorial; el elemento <img> y su zona
+   de "hover" siguen siendo los mismos. */
+img[src^="help.png"] {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2338bdf8'/%3E%3Cstop offset='1' stop-color='%236366f1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='12' cy='12' r='11' fill='url(%23g)'/%3E%3Ccircle cx='12' cy='12' r='10.4' fill='none' stroke='%23ffffff' stroke-opacity='.35'/%3E%3Cpath d='M9.1 9.2a2.95 2.95 0 1 1 4.2 2.7c-.85.42-1.3 1-1.3 1.95v.35' fill='none' stroke='%23ffffff' stroke-width='2.1' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='17.4' r='1.25' fill='%23ffffff'/%3E%3C/svg%3E");
+  vertical-align: middle;
+}
+.tooltip > img[src^="help.png"] {
+  width: 26px !important;
+  height: 26px !important;
+  cursor: help;
+  border-radius: 50%;
+  filter: drop-shadow(0 2px 4px rgba(2, 132, 199, .30));
+  transition: transform .25s cubic-bezier(.3, 1.4, .5, 1), filter .25s ease;
+}
+.tooltip:hover > img[src^="help.png"] {
+  transform: scale(1.15) rotate(-8deg);
+  filter: drop-shadow(0 4px 10px rgba(99, 102, 241, .45));
+}
+
+/* Ventana de ayuda: tarjeta moderna con aparicion suave */
+.tooltip .tooltiptext {
+  display: block;
+  background: var(--slim-surface) !important;
+  color: var(--slim-text);
+  border: 1px solid var(--slim-border) !important;
+  border-top: 3px solid var(--slim-primary) !important;
+  border-radius: var(--slim-radius) !important;
+  box-shadow: var(--slim-shadow-lg);
+  padding: 12px 16px 6px !important;
+  max-height: 60vh;
+  overflow-y: auto;
+  z-index: 60 !important;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .2s ease, transform .2s var(--slim-ease), visibility .2s;
+  line-height: 1.5;
+  font-size: 14px;
+}
+.tooltip:hover .tooltiptext {
+  opacity: 1;
+  transform: none;
+}
+.tooltip .tooltiptext h1,
+.tooltip .tooltiptext h2,
+.tooltip .tooltiptext h3 {
+  color: var(--slim-primary-700);
+  font-size: 1.05em !important;
+  margin: 2px 0 8px !important;
+}
+.tooltip .tooltiptext p { margin: 6px 0; }
+.tooltip .tooltiptext ul { margin: 4px 0 8px; padding-left: 20px; }
+/* Bloques "Nota" / "Advertencia" de la documentacion */
+.tooltip .tooltiptext .admonition {
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+/* El original usa una fuente de iconos que no existe en el ESP32 (sale "▯"):
+   se sustituye por un emoji, que siempre se ve */
+.admonition .admonition-title::before {
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif !important;
+  content: "💡" !important;
+  margin-right: 6px;
+}
+.admonition.warning .admonition-title::before,
+.admonition.caution .admonition-title::before,
+.admonition.attention .admonition-title::before { content: "⚠️" !important; }
+.admonition.danger .admonition-title::before,
+.admonition.error .admonition-title::before { content: "⛔" !important; }
+.admonition.note .admonition-title::before,
+.admonition.info .admonition-title::before { content: "ℹ️" !important; }
+
+/* ---------- Tabla de configuracion (edit_config.html) ---------- */
+table.table td { transition: background-color .2s ease; }
+table.table tr:hover > td { background-color: rgba(14, 165, 233, .045); }
+table.table h4 {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(14, 165, 233, .14), rgba(99, 102, 241, .10));
+  color: var(--slim-primary-700);
+  font-size: 1em;
+}
+
+/* ---------- Overview (overview.html) ---------- */
+.tg {
+  color: var(--slim-text) !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+.tg th {
+  background: linear-gradient(90deg, #f1f6fb, #e8f1fa) !important;
+  color: var(--slim-text-muted) !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  border-radius: 10px 10px 0 0;
+  border-left: 3px solid var(--slim-primary);
+}
+.tg td.tg-2,
+.tg td.tg-3,
+.tg td.tg-4 {
+  background: var(--slim-surface);
+  border-left: 3px solid #e2e8f0;
+  border-bottom: 1px solid #edf1f6;
+}
+.tg td.tg-1 img {
+  border-radius: var(--slim-radius);
+  box-shadow: var(--slim-shadow);
+  transition: box-shadow .3s ease, transform .3s ease;
+}
+.tg td.tg-1 img:hover { box-shadow: var(--slim-shadow-lg); }
+
+#value {
+  font-size: 30px;
+  font-weight: 750;
+  letter-spacing: .02em;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(90deg, var(--slim-primary-700), var(--slim-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#prevalue, #raw {
+  font-family: var(--slim-mono);
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+}
+#value, #prevalue, #raw, #error, #statusflow { border-radius: 6px; padding: 2px 4px; }
+.slim-updated { animation: slim-flash 1.2s ease-out; }
+
+#statusflow::before {
+  content: "";
+  display: inline-block;
+  width: 8px; height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--slim-success);
+  vertical-align: middle;
+  animation: slim-pulse-dot 2s infinite;
+}
+
+/* ==========================================================================
+   Marco principal (index.html): cabecera, menu e iframe
+   Se activa con la clase .slim-shell que pone modern.js en <html>.
+   ========================================================================== */
+html.slim-shell {
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(14, 165, 233, .14), transparent 60%),
+    radial-gradient(900px 400px at 110% 0%, rgba(99, 102, 241, .12), transparent 60%),
+    var(--slim-bg);
+  max-width: none !important;
+  min-height: 100vh;
+}
+html.slim-shell body {
+  margin: 0 auto !important;
+  padding: 10px 12px 0 !important;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+/* Cabecera */
+html.slim-shell .main > table:first-child {
+  background: linear-gradient(120deg, var(--slim-header-1) 0%, var(--slim-header-2) 60%, #0c4a6e 100%);
+  border-radius: var(--slim-radius-lg);
+  box-shadow: var(--slim-shadow-lg);
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+html.slim-shell .main > table:first-child td { padding: 4px 8px; }
+html.slim-shell .main > table:first-child img {
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .95);
+  padding: 4px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .25), 0 8px 22px rgba(14, 165, 233, .35);
+  animation: slim-float 4s ease-in-out infinite;
+}
+html.slim-shell #id_title {
+  margin: 0 0 4px;
+  font-size: 1.75em;
+  font-weight: 750;
+  background: linear-gradient(90deg, #ffffff, #bae6fd, #c7d2fe, #ffffff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: slim-shine 8s linear infinite;
+}
+html.slim-shell .main > table:first-child h2 {
+  margin: 0;
+  font-size: .95em;
+  font-weight: 500;
+  color: #a5c4de;
+}
+
+/* Logo SLIM en la cabecera (sustituye el favicon original sin tocar el HTML) */
+html.slim-shell .main > table:first-child img {
+  content: url("slim-logo.png");
+  width: 72px !important;
+  height: 72px !important;
+  object-fit: contain;
+}
+
+/* Pie de pagina con logos LUMENS IOT SLIM y LECTA (lo crea modern.js) */
+#slim-footer {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 0 0 6px;
+  padding: 8px 14px;
+  border-radius: var(--slim-radius-lg);
+  background: var(--slim-surface);
+  box-shadow: var(--slim-shadow-sm);
+  border: 1px solid var(--slim-border);
+}
+#slim-footer .slim-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--slim-text-muted);
+  font-size: 12px;
+}
+#slim-footer .slim-logo {
+  display: block;
+  height: 44px;
+  width: auto;
+  transition: transform .25s var(--slim-ease), filter .25s ease;
+}
+#slim-footer .slim-logo-lumens { color: var(--slim-heading); }
+#slim-footer .slim-brand:hover .slim-logo { transform: translateY(-2px); filter: drop-shadow(0 6px 10px rgba(14, 165, 233, .25)); }
+@media (max-width: 760px) {
+  #slim-footer .slim-brand span { display: none; }
+  #slim-footer .slim-logo { height: 36px; }
+}
+
+/* Bienvenida del asistente: tarjetas con los logos LUMENS y LECTA */
+.slim-partners { display: flex; flex-wrap: wrap; gap: 12px; margin: 6px 0 12px; }
+.slim-partner {
+  flex: 0 1 260px;
+  box-sizing: border-box;
+  height: 132px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 26px;
+  background: var(--slim-surface);
+  border: 1px solid var(--slim-border);
+  border-radius: var(--slim-radius-lg);
+  box-shadow: var(--slim-shadow);
+  color: var(--slim-heading);
+  animation: slim-page-in .5s var(--slim-ease) both;
+  transition: transform .25s var(--slim-ease), box-shadow .25s ease;
+}
+.slim-partner + .slim-partner { animation-delay: .12s; }
+a.slim-partner[href]:hover { transform: translateY(-3px); box-shadow: var(--slim-shadow-lg); }
+.slim-partner .slim-logo { width: 100%; height: 100%; }
+
+/* ==========================================================================
+   Asistente de configuracion inicial (setup.html)
+   Se reconoce por su marco de explicaciones (#h_iframe_explain); no hay
+   que tocar el HTML. Mismo estilo que el marco principal.
+   ========================================================================== */
+html:has(#h_iframe_explain) {
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(14, 165, 233, .14), transparent 60%),
+    radial-gradient(900px 400px at 110% 0%, rgba(99, 102, 241, .12), transparent 60%),
+    var(--slim-bg);
+  min-height: 100vh;
+}
+html:has(#h_iframe_explain) body {
+  max-width: 1030px;
+  margin: 0 auto !important;
+  padding: 10px 12px 16px !important;
+  background: transparent;
+}
+html:has(#h_iframe_explain) body > table { width: 100% !important; box-sizing: border-box; }
+
+/* Cabecera */
+html:has(#h_iframe_explain) body > table:first-of-type {
+  background: linear-gradient(120deg, var(--slim-header-1) 0%, var(--slim-header-2) 60%, #0c4a6e 100%);
+  border-radius: var(--slim-radius-lg);
+  box-shadow: var(--slim-shadow-lg);
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border: 0 !important;
+}
+html:has(#h_iframe_explain) body > table:first-of-type td { padding: 4px 8px !important; border: 0 !important; background: transparent !important; }
+html:has(#h_iframe_explain) body > table:first-of-type td:first-child { width: 1%; }
+html:has(#h_iframe_explain) body > table:first-of-type img {
+  content: url("slim-logo.png");
+  width: 72px !important;
+  height: 72px !important;
+  object-fit: contain;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .95);
+  padding: 4px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .25), 0 8px 22px rgba(14, 165, 233, .35);
+  animation: slim-float 4s ease-in-out infinite;
+}
+html:has(#h_iframe_explain) body > table:first-of-type h1 {
+  margin: 0 0 4px;
+  font-size: 1.75em;
+  font-weight: 750;
+  background: linear-gradient(90deg, #ffffff, #bae6fd, #c7d2fe, #ffffff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: slim-shine 8s linear infinite;
+}
+html:has(#h_iframe_explain) body > table:first-of-type h2 {
+  margin: 0;
+  font-size: .95em;
+  font-weight: 500;
+  color: #a5c4de;
+}
+
+/* Barra de botones, progreso y senal WiFi */
+html:has(#h_iframe_explain) body > table:nth-of-type(2) {
+  background: var(--slim-surface);
+  border: 1px solid var(--slim-border);
+  border-radius: var(--slim-radius-lg);
+  box-shadow: var(--slim-shadow-sm);
+  padding: 8px 10px;
+  margin-bottom: 10px;
+}
+html:has(#h_iframe_explain) body > table:nth-of-type(2) td {
+  border: 0 !important;
+  background: transparent !important;
+  vertical-align: middle;
+  color: var(--slim-text-muted);
+  font-size: 13px;
+}
+html:has(#h_iframe_explain) body > table:nth-of-type(2) td:last-child { float: none !important; text-align: right; padding-top: 4px !important; }
+html:has(#h_iframe_explain) .button {
+  width: auto !important;
+  min-width: 0;
+  white-space: nowrap;
+  margin: 3px 4px 3px 0;
+  padding: 7px 14px !important;
+  font-size: 14px !important;
+}
+html:has(#h_iframe_explain) #progressBar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 140px !important;
+  height: 8px;
+  margin-top: 6px;
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--slim-seg-bg);
+}
+html:has(#h_iframe_explain) #progressBar::-webkit-progress-bar { background: var(--slim-seg-bg); border-radius: 999px; }
+html:has(#h_iframe_explain) #progressBar::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--slim-primary), var(--slim-accent));
+  border-radius: 999px;
+  transition: width .4s var(--slim-ease);
+}
+html:has(#h_iframe_explain) #progressBar::-moz-progress-bar { background: linear-gradient(90deg, var(--slim-primary), var(--slim-accent)); border-radius: 999px; }
+
+/* Marcos de explicacion y de contenido como tarjetas */
+html:has(#h_iframe_explain) .h_iframe_explain iframe,
+html:has(#h_iframe_explain) .h_iframe iframe {
+  box-sizing: border-box;
+  width: 100% !important;
+  background: var(--slim-surface);
+  border: 1px solid var(--slim-border);
+  border-radius: var(--slim-radius-lg);
+  box-shadow: var(--slim-shadow-sm);
+  padding: 6px 10px !important;
+  margin-bottom: 10px;
+}
+html:has(#h_iframe_explain) #stream:not([src]),
+html:has(#h_iframe_explain) #stream[src=""] { display: none; }
+
+/* Menu */
+html.slim-shell .menu {
+  background: rgba(15, 23, 42, .92);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  box-shadow: var(--slim-shadow);
+  font-family: var(--slim-font);
+  font-size: 15px;
+  padding: 0 6px;
+  position: relative;
+  z-index: 50;
+}
+html.slim-shell .menu > ul { height: 50px; }
+html.slim-shell .menu > ul > li > a {
+  background: transparent;
+  color: #e2e8f0;
+  font-weight: 600;
+  line-height: 36px;
+  margin: 7px 2px;
+  padding: 0 16px;
+  border-radius: 10px;
+  transition: background-color .18s ease, color .18s ease, transform .18s var(--slim-ease);
+}
+html.slim-shell .menu > ul > li:hover > a,
+html.slim-shell .menu > ul > li > a:hover {
+  background: linear-gradient(135deg, var(--slim-primary), var(--slim-primary-600));
+  color: #fff;
+  transform: translateY(-1px);
+}
+html.slim-shell .menu > ul > li.slim-active > a {
+  box-shadow: inset 0 -2px 0 var(--slim-primary);
+  color: #fff;
+}
+
+/* Submenus: misma logica de mostrar/ocultar del original, con animacion */
+html.slim-shell .menu li ul {
+  background: var(--slim-surface);
+  border-radius: var(--slim-radius);
+  box-shadow: var(--slim-shadow-lg);
+  border: 1px solid var(--slim-border);
+  padding: 6px;
+  overflow: visible;
+}
+/* El original fija el ancho (210-350 px, en linea en el HTML) pensando en
+   textos en ingles. En espanol son mas largos: el submenu se ajusta al texto
+   mas largo y cada opcion ocupa una sola linea (si no, se montan). */
+html.slim-shell .menu li ul {
+  width: max-content !important;
+  min-width: 210px;
+  max-width: calc(100vw - 40px);
+}
+html.slim-shell .menu li li { width: auto !important; }
+html.slim-shell .menu li ul a {
+  white-space: nowrap;
+  padding-right: 36px !important;
+}
+html.slim-shell .menu > ul > li:hover > ul { animation: slim-menu-in .18s var(--slim-ease); }
+html.slim-shell .menu ul li ul li:hover > ul { animation: slim-sub-in .16s var(--slim-ease); }
+
+html.slim-shell .menu li li { background: transparent; }
+html.slim-shell .menu li:hover li a,
+html.slim-shell .menu li ul a,
+html.slim-shell .menu ul li ul li:hover ul li a {
+  background: transparent;
+  color: var(--slim-text);
+  height: 40px;
+  line-height: 40px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color .15s ease, color .15s ease, padding-left .15s var(--slim-ease);
+}
+html.slim-shell .menu li ul a:hover,
+html.slim-shell .menu li ul li:hover > a,
+html.slim-shell .menu ul li ul li:hover ul li a:hover {
+  background: linear-gradient(90deg, rgba(14, 165, 233, .14), rgba(99, 102, 241, .10));
+  color: var(--slim-primary-700);
+  padding-left: 20px;
+}
+
+/* Flechas del menu */
+html.slim-shell .menu .down { border-color: currentColor; border-width: 0 2px 2px 0; opacity: .8; }
+html.slim-shell .menu .right { border-color: var(--slim-text-muted); border-width: 0 2px 2px 0; top: 16px; }
+
+/* Area de contenido (iframe) */
+html.slim-shell .iframe {
+  background: var(--slim-surface);
+  border-radius: var(--slim-radius-lg);
+  box-shadow: var(--slim-shadow);
+  margin: 10px 0 8px !important;
+  transition: opacity .25s ease;
+}
+html.slim-shell .iframe.slim-loading { opacity: .55; }
+
+/* Version del firmware bajo el pie: oculta (sigue visible en Sistema > Informacion).
+   El elemento se conserva para que LoadFwVersion() siga funcionando. */
+html.slim-shell #Version { display: none !important; }
+
+/* Barra de progreso de carga de pagina */
+#slim-progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  overflow: hidden;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+#slim-progress.on { opacity: 1; }
+#slim-progress::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, var(--slim-primary), var(--slim-accent), transparent);
+  animation: slim-progress 1s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   Controles estilo "panel de control" (creados por modern.js)
+   El <select> original sigue en la pagina (oculto) y es el que se guarda.
+   ========================================================================== */
+.slim-native-hidden {
+  position: absolute !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 1px !important;
+  min-width: 0 !important;
+  height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Botones segmentados (como 0.1mm / 1mm / 10mm / 100mm) */
+.slim-seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  vertical-align: middle;
+}
+.slim-seg > button {
+  background: var(--slim-seg-bg);
+  color: var(--slim-text);
+  font-weight: 600;
+  font-size: 13.5px;
+  min-height: 34px;
+  min-width: 58px;
+  padding: 6px 14px;
+  border-radius: 9px;
+  box-shadow: none;
+  white-space: nowrap;
+  transform: none;
+  transition: background-color .18s ease, color .18s ease, box-shadow .2s ease, transform .15s var(--slim-ease);
+}
+.slim-seg > button:hover {
+  background: var(--slim-seg-hover);
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+.slim-seg > button.active {
+  background: linear-gradient(135deg, var(--slim-primary), var(--slim-primary-600));
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, .35);
+}
+.slim-seg > button:disabled,
+.slim-seg.is-disabled > button {
+  opacity: .45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.slim-seg.is-disabled > button.active { background: var(--slim-text-muted); }
+
+/* Deslizador con pista rellena (modern.js actualiza --slim-fill) */
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--slim-primary) 0 var(--slim-fill, 50%), var(--slim-switch-off) var(--slim-fill, 50%) 100%);
+  outline: none;
+  vertical-align: middle;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--slim-primary);
+  border: 3px solid var(--slim-surface);
+  box-shadow: 0 0 0 1px rgba(14, 165, 233, .5), 0 2px 6px rgba(14, 165, 233, .5);
+  transition: transform .15s ease;
+}
+input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+input[type=range]::-moz-range-thumb {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--slim-primary);
+  border: 3px solid var(--slim-surface);
+  box-shadow: 0 2px 6px rgba(14, 165, 233, .5);
+}
+
+/* Cabeceras de seccion de Configuracion como barra de panel con icono */
+table.table td > h4 {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 18px 0 4px !important;
+  padding: 11px 16px !important;
+  border-radius: 12px !important;
+  background: var(--slim-surface-2) !important;
+  border: 1px solid var(--slim-border);
+  color: var(--slim-heading) !important;
+  font-size: 15px !important;
+  font-weight: 650;
+}
+table.table td > h4::before {
+  content: "";
+  flex: 0 0 18px;
+  width: 18px; height: 18px;
+  background: var(--slim-primary);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19.4 13a7.7 7.7 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.6 7.6 0 0 0-1.7-1L15 3.3h-4L10.7 6a7.6 7.6 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.7 7.7 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7.6 7.6 0 0 0 1.7 1l.3 2.6h4l.3-2.6a7.6 7.6 0 0 0 1.7-1l2.5 1 2-3.5zM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19.4 13a7.7 7.7 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.6 7.6 0 0 0-1.7-1L15 3.3h-4L10.7 6a7.6 7.6 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.7 7.7 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7.6 7.6 0 0 0 1.7 1l.3 2.6h4l.3-2.6a7.6 7.6 0 0 0 1.7-1l2.5 1 2-3.5zM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+/* La barra ya tiene su propio borde: se quita la linea gris de la fila */
+table.table tr:has(> td > h4) { border-bottom-color: transparent !important; }
+/* La casilla de seccion (activar/desactivar MQTT, InfluxDB...) dentro de la barra */
+table.table td > h4 > input[type=checkbox] { margin-left: 0; text-indent: 0; }
+
+/* Boton de tema claro/oscuro en la cabecera */
+#slim-theme-toggle {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  min-height: 0;
+  padding: 0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .10);
+  border: 1px solid rgba(255, 255, 255, .18);
+  box-shadow: none;
+  font-size: 19px;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+  z-index: 5;
+}
+#slim-theme-toggle:hover { background: rgba(255, 255, 255, .2); transform: rotate(-15deg) scale(1.05); }
+
+/* ==========================================================================
+   MODO OSCURO (html.slim-dark). Lo activa modern.js / common.js.
+   ========================================================================== */
+html.slim-dark {
+  color-scheme: dark;
+  --slim-bg:           #141518;
+  --slim-surface:      #212226;
+  --slim-surface-2:    #2a2c31;
+  --slim-border:       #393c43;
+  --slim-text:         #e3e6eb;
+  --slim-text-muted:   #9aa3af;
+  --slim-heading:      #f3f5f8;
+  --slim-primary-700:  #7dd3fc;
+  --slim-input-border: #464a52;
+  --slim-disabled-bg:  #2a2c31;
+  --slim-code-bg:      rgba(56, 189, 248, .12);
+  --slim-code-fg:      #7dd3fc;
+  --slim-switch-off:   #45484f;
+  --slim-knob:         #1c1d21;
+  --slim-seg-bg:       #3f4249;
+  --slim-seg-hover:    #4b4f57;
+  --slim-shadow-sm:    0 1px 2px rgba(0, 0, 0, .4);
+  --slim-shadow:       0 4px 14px rgba(0, 0, 0, .35);
+  --slim-shadow-lg:    0 18px 40px rgba(0, 0, 0, .55);
+}
+html.slim-dark,
+html.slim-dark body { background-color: var(--slim-surface); }
+html.slim-dark.slim-shell { background: radial-gradient(1200px 500px at 10% -10%, rgba(14, 165, 233, .10), transparent 60%), var(--slim-bg); }
+html.slim-dark.slim-shell body { background: transparent; }
+html.slim-dark a { color: #38bdf8; }
+html.slim-dark a:hover { color: #a5b4fc; }
+html.slim-dark input[type=text],
+html.slim-dark input[type=number],
+html.slim-dark input[type=password],
+html.slim-dark select,
+html.slim-dark textarea { background-color: var(--slim-surface-2); color: var(--slim-text); }
+html.slim-dark tr.expert { background-color: rgba(239, 68, 68, .06) !important; box-shadow: inset 3px 0 0 rgba(248, 113, 113, .55); }
+html.slim-dark tr.expert > td { background-color: transparent !important; }
+html.slim-dark .tg th { background: linear-gradient(90deg, #2a2c31, #26282d) !important; }
+html.slim-dark table.table tr:hover > td { background-color: rgba(56, 189, 248, .05); }
+html.slim-dark details { background: var(--slim-surface-2); }
+html.slim-dark .menu { background: rgba(10, 11, 13, .9); }
+html.slim-dark .iframe { background: var(--slim-surface); }
+/* Textos de la documentacion (mkdocs) con colores fijos */
+html.slim-dark .rst-content,
+html.slim-dark .rst-content p,
+html.slim-dark .rst-content li,
+html.slim-dark .tooltiptext { color: var(--slim-text) !important; }
+html.slim-dark .admonition { background: rgba(56, 189, 248, .08) !important; color: var(--slim-text) !important; }
+html.slim-dark .admonition .admonition-title { background: rgba(56, 189, 248, .18) !important; color: var(--slim-heading) !important; }
+html.slim-dark .admonition.warning { background: rgba(245, 158, 11, .10) !important; }
+html.slim-dark .admonition.warning .admonition-title { background: rgba(245, 158, 11, .25) !important; }
+html.slim-dark hr { background: linear-gradient(90deg, transparent, var(--slim-border), transparent); }
+/* Etiquetas de parametros: el HTML trae color:black fijo y el codigo
+   original lo pasa a gris al desactivar el parametro. Se respetan ambos. */
+html.slim-dark [style*="color: black"],
+html.slim-dark [style*="color:black"] { color: var(--slim-text) !important; }
+html.slim-dark [style*="color: gray"],
+html.slim-dark [style*="color:gray"],
+html.slim-dark [style*="color: grey"],
+html.slim-dark [style*="color:grey"] { color: #6b7280 !important; }
+html.slim-dark table.table tr { border-color: var(--slim-border) !important; }
+html.slim-dark .invalid-input { color: #3b2a00 !important; }
+
+/* ---------- Accesibilidad: sin animaciones si el sistema lo pide ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}

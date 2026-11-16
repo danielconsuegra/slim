@@ -30,15 +30,15 @@ function upload() {
   var MAX_FILE_SIZE_STR = "8000KB";
 
   if (fileInput.length == 0) {
-    firework.launch('No file selected!', 'danger', 30000);
+    firework.launch('¡No has seleccionado ningún archivo!', 'danger', 30000);
   } else if (filePath.length == 0) {
-    firework.launch('File path on server is not set!', 'danger', 30000);
+    firework.launch('¡No se ha indicado la ruta en el servidor!', 'danger', 30000);
   } else if (filePath.length > 100) {
-    firework.launch('Filename is to long! Max 100 characters.', 'danger', 30000);
+    firework.launch('¡El nombre del archivo es demasiado largo! Máximo 100 caracteres.', 'danger', 30000);
   } else if (filePath.indexOf(' ') >= 0) {
-    firework.launch('File path on server cannot have spaces!', 'danger', 30000);
+    firework.launch('¡La ruta en el servidor no puede tener espacios!', 'danger', 30000);
   } else if (filePath[filePath.length-1] == '/') {
-    firework.launch('File name not specified after path!', 'danger', 30000);
+    firework.launch('¡Falta el nombre del archivo tras la ruta!', 'danger', 30000);
   } else if (fileInput[0].size > MAX_FILE_SIZE) {
     firework.launch("File size must be less than " + MAX_FILE_SIZE_STR + "!", 'danger', 30000);
   } else {
@@ -54,9 +54,9 @@ function upload() {
           document.open();
           document.write(xhttp.responseText);
           document.close();
-          firework.launch('File upload completed', 'success', 5000);
+          firework.launch('Archivo subido', 'success', 5000);
         } else if (xhttp.status == 0) {
-          firework.launch('Server closed the connection abruptly!', 'danger', 30000);
+          firework.launch('¡El servidor cerró la conexión de forma inesperada!', 'danger', 30000);
           UpdatePage(false);
         } else {
           firework.launch('An error occured: ' + xhttp.responseText, 'danger', 30000);

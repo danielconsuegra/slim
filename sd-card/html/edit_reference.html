@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en">
+<html lang="es" xml:lang="es">
 
 <head>
     <meta charset="utf-8"/>
-    <title>Reference Image and Camera Settings</title>
+    <title>Imagen de referencia y ajustes de cámara</title>
         
     <style>
         h1 {font-size: 2em;}
@@ -117,6 +117,11 @@
     <script type="text/javascript" src="jquery-3.6.0.min.js?v=$COMMIT_HASH"></script>
     <script type="text/javascript" src="firework.js?v=$COMMIT_HASH"></script>
 
+    <!-- SLIM: tema visual y traduccion de mensajes dinamicos -->
+    <script>window.__slimThemeLoaded=true;try{var p=localStorage.getItem("slim-theme");if(p==="dark"||(!p&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("slim-dark");}catch(e){}</script>
+    <link rel="stylesheet" href="modern.css?v=$COMMIT_HASH">
+    <script type="text/javascript" src="modern.js?v=$COMMIT_HASH"></script>
+    <script type="text/javascript" src="i18n-es.js?v=$COMMIT_HASH"></script>
 </head>
 
 <body style="font-family: arial; padding: 0px 10px;">
@@ -124,39 +129,34 @@
         <div id="overlaytext"></div>
     </div>
 
-    <h2>Reference Image and Camera Settings</h2>
+    <h2>Imagen de referencia y ajustes de cámara</h2>
     <details id="desc_details" style="font-size:16px">
-        <summary><b>CLICK HERE</b> for usage description. More infos in documentation: 
-                <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/Reference-Image/ target=_blank>Reference Image</a>
+        <summary><b>HAZ CLIC AQUÍ</b> para ver la descripción de uso. Más información en la documentación: 
+                <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/Reference-Image/ target=_blank>Imagen de referencia</a>
         </summary>
         <p>
-            The reference image is the base image on which the alignment markers, digit ROIs and anlog ROIs will be defined.
+            La imagen de referencia es la imagen base sobre la que se definen las marcas de alineación, las ROIs de dígitos y las ROIs analógicas.
         </p>        
         <p>
-            Initially the currently saved reference image is shown. If you start with a setup from scratch, a default image is shown as a placeholder.
-            Use the button <b>"Create New Reference / Change Camera Settings"</b> to start the creation of your own reference image. After clicking the button, the camera will take a
-            photo using the configured parameters. This will be your new reference image. With the button <b>"Update Reference Image"</b> you can update the image again.
+            Al principio se muestra la imagen de referencia guardada. Si empiezas desde cero, se muestra una imagen por defecto de ejemplo. Usa el botón <b>"Crear nueva referencia / Cambiar ajustes de cámara"</b> para crear tu propia imagen de referencia. Al pulsarlo, la cámara toma una foto con los parámetros configurados. Esa será tu nueva imagen de referencia. Con el botón <b>"Actualizar imagen de referencia"</b> puedes volver a actualizar la imagen.
         </p>        
         <p>
-            To have a reliable evaluation processing, it is mandatory to have the digit ROIs horizontally aligned. Using the two input fields "Rotation angle" and
-            "(Fine-tune)" the image can be rotated in both directions. The resulting rotation angle is used to pre-rotate the image before
-            the alignment algorithm is processed to compensate only small misalignments (See next step Alignment Markers). Further information can be found in documenation:
-            <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/Reference-Image/ target=_blank>Reference Image</a>
+            Para un procesamiento fiable es obligatorio que las ROIs de dígitos estén alineadas en horizontal. Con los campos "Ángulo de rotación" y "(Ajuste fino)" la imagen se puede girar en ambos sentidos. El ángulo resultante se usa para pre-rotar la imagen antes del algoritmo de alineación, que solo compensa desviaciones pequeñas (ver el siguiente paso, Marcas de alineación). Más información en la documentación:
+            <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/Reference-Image/ target=_blank>Imagen de referencia</a>
         </p>
         <p>
-            After setting up your reference image don't forget to save with the <b>"Save new Reference Image and Camera Settings"</b> button!<br><br>
-            <b>NOTE:</b> There is no need to perform a reboot after every saving or step. It's sufficient to reboot after all configuration steps 
-            (reference image, alignment, ROI configuration) are completed to activate new configuration.
+            Cuando tengas lista tu imagen de referencia, no olvides guardar con el botón <b>"Guardar nueva imagen de referencia y ajustes de cámara"</b> .<br><br>
+            <b>NOTA:</b> No hace falta reiniciar después de cada guardado o paso. Basta con reiniciar al terminar todos los pasos de configuración (imagen de referencia, alineación, ROIs) para activar la nueva configuración.
         </p>
     </details>
     <hr>
 
-    <input class="button" type="button" id="showcurrentreference" disabled value="Reset and show current Reference and Camera Settings" onclick="showReference()"><br><br>
-    <input class="button" type="button" id="startreference" value="Create New Reference / Change Camera Settings" onclick="doTakeReference()">
+    <input class="button" type="button" id="showcurrentreference" disabled value="Restablecer y mostrar la referencia y ajustes actuales" onclick="showReference()"><br><br>
+    <input class="button" type="button" id="startreference" value="Crear nueva referencia / Cambiar ajustes de cámara" onclick="doTakeReference()">
     <hr>
 
     <input style="margin-top:12px; margin-bottom:12px; color:black" type="checkbox" id="ExpertModus_enabled" value="1"  onclick='UpdateExpertModus()' unchecked>
-    <label for="ExpertModus_enabled">Show Expert Parameters</label> 
+    <label for="ExpertModus_enabled">Mostrar parámetros avanzados</label> 
 
     <table style="width: 100%">
         <colgroup>
@@ -174,14 +174,14 @@
 			</td>
 			<td>
 				<select id="TakeImage_CamZoom_value1" onchange="cameraParameterChanged()">
-					<option value="true">enabled (true)</option>
-					<option value="false" selected>disabled (false)</option>
+					<option value="true">activado (true)</option>
+					<option value="false" selected>desactivado (false)</option>
 				</select>			
 			</td>
 			<td>$TOOLTIP_TakeImage_CamZoom</td>				
 			
             <td class="indent1">
-                <label id="TakeImage_CamZoomOffsetX_text" style="color:black;">Zoom Offset X: </label>
+                <label id="TakeImage_CamZoomOffsetX_text" style="color:black;">Desplazamiento zoom X: </label>
 			</td>
             <td>
                 <input required type="number" id="TakeImage_CamZoomOffsetX_value1" value="0" min="-960" max="960" step="8" onchange="cameraParameterChanged()"
@@ -192,7 +192,7 @@
 		
         <tr class="expert">
             <td class="indent1">
-                <label id="TakeImage_CamZoomSize_text" style="color:black;">Zoom Size: </label>
+                <label id="TakeImage_CamZoomSize_text" style="color:black;">Tamaño del zoom: </label>
 			</td>
             <td>
                 <input required type="number" id="TakeImage_CamZoomSize_value1" value="0" min="0" max="59" step="1" onchange="cameraParameterChanged()"
@@ -201,7 +201,7 @@
 			<td>$TOOLTIP_TakeImage_CamZoomSize</td>			
 		
             <td class="indent1">
-                <label id="TakeImage_CamZoomOffsetY_text" style="color:black;">Zoom Offset Y: </label>
+                <label id="TakeImage_CamZoomOffsetY_text" style="color:black;">Desplazamiento zoom Y: </label>
 			</td>
             <td>
                 <input required type="number" id="TakeImage_CamZoomOffsetY_value1" value="0" min="-720" max="720" step="8" onchange="cameraParameterChanged()"
@@ -212,28 +212,28 @@
 		
         <tr class="expert">
 			<td class="indent1">
-				<class id="TakeImage_CamSpecialEffect_text" style="color:black;">SpecialEffect: </class>
+				<class id="TakeImage_CamSpecialEffect_text" style="color:black;">Efecto especial: </class>
 			</td>
 			<td>
 				<select id="TakeImage_CamSpecialEffect_value1" onchange="cameraParameterChanged()">
-					<option value="no_effect" selected>no effect</option>
-					<option value="negative" >negative</option>
-					<option value="grayscale" >grayscale</option>					
-					<option value="red" >red</option>					
-					<option value="green" >green</option>					
-					<option value="blue" >blue</option>					
+					<option value="no_effect" selected>sin efecto</option>
+					<option value="negative" >negativo</option>
+					<option value="grayscale" >escala de grises</option>					
+					<option value="red" >rojo</option>					
+					<option value="green" >verde</option>					
+					<option value="blue" >azul</option>					
 					<option value="retro" >retro</option>					
 				</select>
 			</td>
 			<td>$TOOLTIP_TakeImage_CamSpecialEffect</td>			
 			
 			<td class="indent1">
-				<class id="TakeImage_CamAec2_text" style="color:black;">Auto-exposure Control 2</class>
+				<class id="TakeImage_CamAec2_text" style="color:black;">Control automático de exposición 2</class>
 			</td>
 			<td>
 				<select id="TakeImage_CamAec2_value1" onchange="cameraParameterChanged()">
-					<option value="true">enabled (true)</option>
-					<option value="false" selected>disabled (false)</option>
+					<option value="true">activado (true)</option>
+					<option value="false" selected>desactivado (false)</option>
 				</select>
 			</td>
 			<td>$TOOLTIP_TakeImage_CamAec2</td>			
@@ -241,18 +241,18 @@
 		
         <tr>
 			<td class="indent1">
-			    <class id="TakeImage_CamHmirror_text" style="color:black;">Mirror Image</class>
+			    <class id="TakeImage_CamHmirror_text" style="color:black;">Imagen en espejo</class>
 			</td>
 			<td>
 				<select id="TakeImage_CamHmirror_value1" onchange="cameraParameterChanged()">
-					<option value="true">enabled (true)</option>
-					<option value="false" selected>disabled (false)</option>
+					<option value="true">activado (true)</option>
+					<option value="false" selected>desactivado (false)</option>
 				</select>
 			</td>			
 			<td>$TOOLTIP_TakeImage_CamHmirror</td>
 			
             <td class="indent1">
-                <class id="TakeImage_LEDIntensity_text" style="color:black;">LED intensity: </class>
+                <class id="TakeImage_LEDIntensity_text" style="color:black;">Intensidad del LED: </class>
             </td>
             <td>
                 <input required style="clear: both" type="number" id="TakeImage_LEDIntensity_value1" size="13" value="0"  min="0" max="100" onchange="cameraParameterChanged()" 
@@ -263,18 +263,18 @@
 		
         <tr>
 			<td class="indent1">
-			    <class id="TakeImage_CamVflip_text" style="color:black;">Flip Image</class>
+			    <class id="TakeImage_CamVflip_text" style="color:black;">Voltear imagen</class>
 			</td>
 			<td>
 				<select id="TakeImage_CamVflip_value1" onchange="cameraParameterChanged()">
-					<option value="true">enabled (true)</option>
-					<option value="false" selected>disabled (false)</option>
+					<option value="true">activado (true)</option>
+					<option value="false" selected>desactivado (false)</option>
 				</select>
 			</td>			
 			<td>$TOOLTIP_TakeImage_CamVflip</td>
 			
             <td class="indent1">
-                <class id="TakeImage_CamBrightness_text" style="color:black;">Brightness: </class>
+                <class id="TakeImage_CamBrightness_text" style="color:black;">Brillo: </class>
             </td>
             <td>
                 <input style="clear: both; width: 80%;vertical-align:middle" type="range" id="TakeImage_CamBrightness_value1" size="13" value=0  min="-2" max="2" onchange="cameraParameterChanged()" 
@@ -286,16 +286,16 @@
 		
         <tr>
             <td class="indent1">
-				<label id="PreRotateAngle_text" style="color:black;">Rotation angle:</label>
+				<label id="PreRotateAngle_text" style="color:black;">Ángulo de rotación:</label>
 			</td>
             <td>
                 <input required type="number" id="PreRotateAngle_value1" value="0" min="-180" max="180" onchange="cameraParameterChangedDR()"
-                    oninput="(!validity.rangeOverflow||(value=180)) && (!validity.rangeUnderflow||(value=-180)) && (!validity.stepMismatch||(value=parseInt(this.value)));">degree
+                    oninput="(!validity.rangeOverflow||(value=180)) && (!validity.rangeUnderflow||(value=-180)) && (!validity.stepMismatch||(value=parseInt(this.value)));">grados
             </td>
 			<td>$TOOLTIP_Alignment_InitialRotate</td>
 			
             <td class="indent1">
-                <class id="TakeImage_CamContrast_text" style="color:black;">Contrast: </class>
+                <class id="TakeImage_CamContrast_text" style="color:black;">Contraste: </class>
             </td>
             <td>
                 <input style="clear: both; width: 80%;vertical-align:middle" type="range" id="TakeImage_CamContrast_value1" size="13" value=0  min="-2" max="2" onchange="cameraParameterChanged()" 
@@ -307,16 +307,16 @@
 		
         <tr>
             <td class="indent1">
-				<label id="FineRotate_text" style="color:black;">(Fine-tune):</label>
+				<label id="FineRotate_text" style="color:black;">(Ajuste fino):</label>
 			</td>
             <td>
                 <input required type="number" id="FineRotate_value1" value=0.0 min="-1" max="1" step="0.1" onchange="cameraParameterChangedDR()"
-                    oninput="(!validity.rangeOverflow||(value=1)) && (!validity.rangeUnderflow||(value=-1)) && (!validity.stepMismatch||(value=parseInt(this.value)));">degree
+                    oninput="(!validity.rangeOverflow||(value=1)) && (!validity.rangeUnderflow||(value=-1)) && (!validity.stepMismatch||(value=parseInt(this.value)));">grados
             </td>
 			<td></td>
 			
             <td class="indent1">
-                <class id="TakeImage_CamSaturation_text" style="color:black;">Saturation: </class>
+                <class id="TakeImage_CamSaturation_text" style="color:black;">Saturación: </class>
             </td>
             <td>
                 <input  style="clear: both; width: 80%;vertical-align:middle" type="range" id="TakeImage_CamSaturation_value1" size="13" value=0 min="-2" max="2" onchange="cameraParameterChanged()" 
@@ -328,18 +328,18 @@
 		
         <tr class="expert">
 			<td class="indent1">
-				<class id="TakeImage_CamAec_text" style="color:black;">Auto-exposure Control</class>
+				<class id="TakeImage_CamAec_text" style="color:black;">Control automático de exposición</class>
 			</td>
 			<td>
 				<select id="TakeImage_CamAec_value1" onchange="cameraParameterChanged()">
-					<option value="true">enabled (true)</option>
-					<option value="false" selected>disabled (false)</option>
+					<option value="true">activado (true)</option>
+					<option value="false" selected>desactivado (false)</option>
 				</select>
 			</td>
 			<td>$TOOLTIP_TakeImage_CamAec</td>
 			
             <td class="indent1">
-                <class id="TakeImage_CamAeLevel_text" style="color:black;">Auto Exposure Level: </class>
+                <class id="TakeImage_CamAeLevel_text" style="color:black;">Nivel de exposición automática: </class>
             </td>
             <td>
                 <input  style="clear: both; width: 80%;vertical-align:middle" type="range" id="TakeImage_CamAeLevel_value1" size="13" value=0 min="-2" max="2" onchange="cameraParameterChanged()" 
@@ -351,18 +351,18 @@
 		
         <tr class="expert">
 			<td class="indent1">
-				<class id="TakeImage_CamAutoSharpness_text" style="color:black;">AutoSharpness</class>
+				<class id="TakeImage_CamAutoSharpness_text" style="color:black;">Nitidez automática</class>
 			</td>
 			<td>
 				<select id="TakeImage_CamAutoSharpness_value1" onchange="cameraParameterChanged()">
-					<option value="true">enabled (true)</option>
-					<option value="false" selected>disabled (false)</option>
+					<option value="true">activado (true)</option>
+					<option value="false" selected>desactivado (false)</option>
 				</select>
 			</td>
 			<td>$TOOLTIP_TakeImage_CamAutoSharpness</td>			
 			
             <td class="indent1">
-                <class id="TakeImage_CamSharpness_text" style="color:black;">Sharpness: </class>
+                <class id="TakeImage_CamSharpness_text" style="color:black;">Nitidez: </class>
             </td>
             <td>
                 <input style="clear: both; width: 80%;vertical-align:middle" type="range" id="TakeImage_CamSharpness_value1" size="13" value=0  min="-2" max="2" onchange="cameraParameterChanged()" 
@@ -376,17 +376,17 @@
     <table>
         <tr class="indent1">
             <td>
-				<input class="button" type="submit" id="updatereferenceimage" value="Update Reference Image" onclick="doTakeReference()">
+				<input class="button" type="submit" id="updatereferenceimage" value="Actualizar imagen de referencia" onclick="doTakeReference()">
 			</td>
 			
             <td>
-				<input class="button" type="button" id="savereferenceimage" value="Save new Reference Image and Camera Settings" onclick="SaveReference()">
+				<input class="button" type="button" id="savereferenceimage" value="Guardar nueva imagen de referencia y ajustes de cámara" onclick="SaveReference()">
 			</td>
         </tr>	
     </table>
 
     <hr>
-    <b>Reference Image:</b><br>
+    <b>Imagen de referencia:</b><br>
     <canvas id="canvas"></canvas>
 
 
@@ -577,7 +577,7 @@
 					
                     if (durchlaufe > 10) {
 						document.getElementById("overlay").style.display = "none";
-                        firework.launch('Image capture aborted, timeout!', 'danger', 5000);
+                        firework.launch('Captura cancelada: ¡tiempo agotado!', 'danger', 5000);
                         return;
                     }					
 
@@ -592,7 +592,7 @@
                         isActReference = false;
 						
                         document.getElementById("overlay").style.display = "none";
-                        firework.launch('Image capture completed, please wait until it loads...', 'success', 5000);
+                        firework.launch('Captura completada, espera a que cargue...', 'success', 5000);
 
                         return;
                     }
@@ -717,7 +717,7 @@
 					
                     if (durchlaufe > 10) {
 						document.getElementById("overlay").style.display = "none";
-                        firework.launch('Save Cam Settings aborted, timeout!', 'danger', 5000);
+                        firework.launch('Guardado de ajustes de cámara cancelado: ¡tiempo agotado!', 'danger', 5000);
                         return;
                     }					
 
@@ -728,7 +728,7 @@
             
                     if (xhttp.responseText == "CamSettingsSet") {
 						document.getElementById("overlay").style.display = "none";
-                        firework.launch('Cam Settings saved', 'success', 5000);
+                        firework.launch('Ajustes de cámara guardados', 'success', 5000);
                         return;
                     }
                     else {
@@ -865,14 +865,14 @@
             camSettingsSet();
             
             showReference();				
-            firework.launch('Reference image configuration saved', 'success', 5000);
+            firework.launch('Configuración de la imagen de referencia guardada', 'success', 5000);
         }
 
         function init() {
             openDescription();		
 	
             if (!loadConfig(domainname)) {
-				firework.launch('Configuration could not be loaded! Please reload the page!', 'danger', 30000);
+				firework.launch('¡No se pudo cargar la configuración! Recarga la página.', 'danger', 30000);
 				return;
             }		
 			
@@ -1043,7 +1043,7 @@
             if (document.getElementById("ExpertModus_enabled").checked) {
                 _style_pur = '';
                 _hidden = false;
-                firework.launch("Expert parameter view activated. Please use it carefully", 'warning', 5000);
+                firework.launch("Vista de parámetros avanzados activada. Úsala con cuidado", 'warning', 5000);
             }
 
             const expert = document.querySelectorAll(".expert");

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en"> 
+<html lang="es" xml:lang="es"> 
 <head>
-    <title>Data Export (CSV)</title>
+    <title>Exportar datos (CSV)</title>
     <meta charset="UTF-8"/>
 
     <style>
@@ -24,12 +24,17 @@
             font-size: 16px;
         }
     </style>
+    <!-- SLIM: tema visual y traduccion de mensajes dinamicos -->
+    <script>window.__slimThemeLoaded=true;try{var p=localStorage.getItem("slim-theme");if(p==="dark"||(!p&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("slim-dark");}catch(e){}</script>
+    <link rel="stylesheet" href="modern.css?v=$COMMIT_HASH">
+    <script type="text/javascript" src="modern.js?v=$COMMIT_HASH"></script>
+    <script type="text/javascript" src="i18n-es.js?v=$COMMIT_HASH"></script>
 </head>
 
 <body style="font-family: arial; padding: 0px 10px;">
-    <h2>Data Export(CSV)</h2>
-    <p>With the following action the <a href="/fileserver/log/data/" target="_self">data</a> folder on the SD-card gets zipped and provided as a download.</p>
-    <button class="button" id="startExportData" type="button" onclick="startExportData()">Export Data</button>
+    <h2>Exportar datos (CSV)</h2>
+    <p>Con la siguiente acción, la carpeta <a href="/fileserver/log/data/" target="_self">datos</a> de la tarjeta SD se comprime en un ZIP y se ofrece para descargar.</p>
+    <button class="button" id="startExportData" type="button" onclick="startExportData()">Exportar datos</button>
     <p></p>
     <hr>
     <p id=progress></p>

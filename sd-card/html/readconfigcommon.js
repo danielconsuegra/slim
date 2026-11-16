@@ -180,7 +180,7 @@ function FileDeleteOnServer(_filename, _domainname = "") {
                 okay = true;
             } 
 			else if (xhttp.status == 0) {
-				// firework.launch('Server closed the connection abruptly!', 'danger', 30000);
+				// firework.launch('¡El servidor cerró la conexión de forma inesperada!', 'danger', 30000);
 				// location.reload()
             } 
 			else {
@@ -210,7 +210,7 @@ function FileSendContent(_content, _filename, _domainname = "") {
                 okay = true;
             } 
 			else if (xhttp.status == 0) {
-				firework.launch('Server closed the connection abruptly!', 'danger', 30000);
+				firework.launch('¡El servidor cerró la conexión de forma inesperada!', 'danger', 30000);
             } 
 			else {
 				firework.launch('An error occured: ' + xhttp.responseText, 'danger', 30000);
@@ -246,10 +246,10 @@ function MakeRefImageZW(zw, _enhance, _domainname){
 
     if (xhttp.responseText == "CutImage Done") {
         if (_enhance == true) {
-            firework.launch('Image Contrast got enhanced', 'success', 5000);
+            firework.launch('Contraste de imagen mejorado', 'success', 5000);
         }
         else {
-            firework.launch('Alignment Marker have been updated', 'success', 5000);
+            firework.launch('Marcas de alineación actualizadas', 'success', 5000);
         }
         return true;
     }

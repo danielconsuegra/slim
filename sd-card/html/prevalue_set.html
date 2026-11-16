@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en">
+<html lang="es" xml:lang="es">
 <head>
-    <title>Set PreValue</title>
+    <title>Fijar valor previo</title>
     <meta charset="UTF-8" />
 
     <style>
@@ -59,27 +59,27 @@
     }
     </style>
 
+    <!-- SLIM: tema visual y traduccion de mensajes dinamicos -->
+    <script>window.__slimThemeLoaded=true;try{var p=localStorage.getItem("slim-theme");if(p==="dark"||(!p&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("slim-dark");}catch(e){}</script>
+    <link rel="stylesheet" href="modern.css?v=$COMMIT_HASH">
+    <script type="text/javascript" src="modern.js?v=$COMMIT_HASH"></script>
+    <script type="text/javascript" src="i18n-es.js?v=$COMMIT_HASH"></script>
 </head>
 
 <body style="font-family: arial; padding: 0px 10px;">
-    <h2>Set "Previous Value"</h2>
+    <h2>Fijar "valor previo"</h2>
     <details id="desc_details">
-        <summary><b>CLICK HERE</b> for usage description. More infos in documentation: 
-            <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/FAQs/#pre-value target=_blank>"Previous Value"</a>
+        <summary><b>HAZ CLIC AQUÍ</b> para ver la descripción de uso. Más información en la documentación: 
+            <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/FAQs/#pre-value target=_blank>"Valor previo"</a>
         </summary>
         <p>
-            Set the "previous value" for consistency checks and substitution for NaN
+            Fija el "valor previo" para las comprobaciones de consistencia y para sustituir NaN
         </p>
         <p>
-            Previous value is a bit missleading, because normally it is the last valid value but not always the value of the previous round. 
-            The result of the the new round, as long it's a vaild result, will be promoted to the new "previous value". If the result is not usable the 
-            "previous value" will not be updated.
-            If activated in configuration, the "previous value" will be used in the following round to check negtive rates, high rates
-            (MaxRateValue / MaxRateType) and for the option "Check Digit Increase Consistency" (configuration paramter, only for dig-class11 models). 
+            "Valor previo" es un nombre algo engañoso: normalmente es el último valor válido, pero no siempre el de la ronda anterior. El resultado de una nueva ronda, si es válido, pasa a ser el nuevo "valor previo". Si el resultado no sirve, el "valor previo" no se actualiza. Si está activado en la configuración, el "valor previo" se usa en la ronda siguiente para comprobar cambios negativos, cambios demasiado altos (MaxRateValue / MaxRateType) y para la opción "Check Digit Increase Consistency" (parámetro de configuración, solo para modelos dig-class11). 
         </p>
         <p>
-            The field to enter new "previous value" is prefilled with actual "raw value" because it's the most likely use case. Nevertheless every other
-            positive value can be set as new "previous value".
+            El campo para el nuevo "valor previo" viene relleno con el "valor bruto" actual porque es el caso más habitual. Aun así, puedes fijar cualquier otro valor positivo como nuevo "valor previo".
         </p>
     </details>
     <hr />
@@ -91,7 +91,7 @@
         </colgroup>
         <tr>
             <td style="height: 40px;">
-                <class id="Numbers_text" style="color:black;">Number sequence:</class>
+                <class id="Numbers_text" style="color:black;">Secuencia numérica:</class>
             </td>
             <td>
                 <select id="Numbers_value1" onchange="numberChanged()"></select>
@@ -107,22 +107,22 @@
             <col span="1" style="width: 65%;">
         </colgroup>
         <tr>
-            <td>Current "previous value":</td>
+            <td>"Valor previo" actual:</td>
             <td>
                 <div style="padding-left:5px" id="prevalue"></div>
             </td>
         </tr>
         <tr>
-            <td style="vertical-align: text-top; padding-top: 12px;">Enter new "previous value":</td>
+            <td style="vertical-align: text-top; padding-top: 12px;">Nuevo "valor previo":</td>
             <td>
                 <input required type="number" id="myInput" name="myInput" min="0" oninput="(!validity.rangeUnderflow||(value=0));">
-                <button class="button" type="button" onclick="setprevalue()">Update Value</button>
-                <p style="padding-left: 5px;">NOTE: The current "raw value" is prefilled as 
-                    <br>the suggested new "previous value"</p>
+                <button class="button" type="button" onclick="setprevalue()">Actualizar valor</button>
+                <p style="padding-left: 5px;">NOTA: el "valor bruto" actual viene relleno como 
+                    <br>el nuevo "valor previo" sugerido</p>
             </td>
         </tr>	
         <tr>
-            <td id="result_text">"Previous value" updated to:</td>
+            <td id="result_text">"Valor previo" actualizado a:</td>
             <td>
                 <div id="result" style="padding-left:5px;"></div>
             </td>
@@ -160,7 +160,7 @@ function setprevalue() {
      }
     catch (error)
     {
-      firework.launch('Failed to get data from device!', 'danger', 30000);
+      firework.launch('¡No se pudieron obtener datos del dispositivo!', 'danger', 30000);
     }
 }
 
@@ -179,7 +179,7 @@ function loadPrevalue(_domainname) {
   }
   catch (error)
   {
-    firework.launch('Failed to get data from device!', 'danger', 30000);
+    firework.launch('¡No se pudieron obtener datos del dispositivo!', 'danger', 30000);
   }
 
   // Get current RAW Value
@@ -205,7 +205,7 @@ function loadPrevalue(_domainname) {
   }
   catch (error)
   {
-    firework.launch('Failed to get data from device!', 'danger', 30000);
+    firework.launch('¡No se pudieron obtener datos del dispositivo!', 'danger', 30000);
   }
 }
 

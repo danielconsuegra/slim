@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en"> 
+<html lang="es" xml:lang="es"> 
 <head>
+    <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {
@@ -38,12 +39,17 @@
   background-color: #f1f1f1;
 }
 </style>
+    <!-- SLIM: tema visual y traduccion de mensajes dinamicos -->
+    <script>window.__slimThemeLoaded=true;try{var p=localStorage.getItem("slim-theme");if(p==="dark"||(!p&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("slim-dark");}catch(e){}</script>
+    <link rel="stylesheet" href="modern.css?v=$COMMIT_HASH">
+    <script type="text/javascript" src="modern.js?v=$COMMIT_HASH"></script>
+    <script type="text/javascript" src="i18n-es.js?v=$COMMIT_HASH"></script>
 </head>
 <body>
 
-<h2>Timezones</h2>
+<h2>Zonas horarias</h2>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for your region..." title="Type in a region">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca tu región..." title="Escribe una región">
 
 
 <table id="data">
@@ -514,7 +520,7 @@
     <tr><td>Pacific/Wallis</td><td>&lt;+12>-12</td></tr>
 </table>
 
-<p>Source: <a href=https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv target=_blank>https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv</a></p>
+<p>Fuente: <a href=https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv target=_blank>https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv</a></p>
 
 <script>
     function myFunction() {

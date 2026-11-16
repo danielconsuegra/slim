@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en"> 
+<html lang="es" xml:lang="es"> 
 <head>
-<title>Info</title>
+<title>Información</title>
 <meta charset="UTF-8" />
 
 <style>
@@ -29,6 +29,11 @@ table {
 </style>
 
 <script type="text/javascript" src="common.js?v=$COMMIT_HASH"></script> 
+    <!-- SLIM: tema visual y traduccion de mensajes dinamicos -->
+    <script>window.__slimThemeLoaded=true;try{var p=localStorage.getItem("slim-theme");if(p==="dark"||(!p&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("slim-dark");}catch(e){}</script>
+    <link rel="stylesheet" href="modern.css?v=$COMMIT_HASH">
+    <script type="text/javascript" src="modern.js?v=$COMMIT_HASH"></script>
+    <script type="text/javascript" src="i18n-es.js?v=$COMMIT_HASH"></script>
 </head>
 
 <body style="font-family: arial; padding: 0px 10px;">
@@ -38,14 +43,14 @@ table {
 			<col span="1" style="width: 65%;">
 		</colgroup>
 		<tr>
-			<h3>Runtime Information</h3>
+			<h3>Información de ejecución</h3>
 		</tr>
 		<tr>
-			<td>Start time:</td>
+			<td>Hora de inicio:</td>
 			<td><output id="starttime"></output></td>
 		</tr>
 		<tr>
-			<td>Uptime:</td>
+			<td>Tiempo encendido:</td>
 			<td><output id="uptime"></output></td>
 		</tr>
 	</table>
@@ -56,23 +61,23 @@ table {
 			<col span="1" style="width: 65%;">
 		</colgroup>
 		<tr>
-			<h3>Build Info</h3>
+			<h3>Información de compilación</h3>
 		</tr>
 		<tr>
-			<td>Firmware version:</td>
+			<td>Versión del firmware:</td>
 			<td>
 				<output id="firmware"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>Firmware build time:</td>
+			<td>Fecha de compilación del firmware:</td>
 			<td>
 				<output id="build-time"></output>
 			</td>
 		</tr>
 
 		<tr>
-			<td>Web interface version:</td>
+			<td>Versión de la interfaz web:</td>
 			<td>
 				<output id="web-ui"></output>
 			</td>
@@ -85,22 +90,22 @@ table {
 			<col span="1" style="width: 65%;">
 		</colgroup>
 		<tr>
-			<h3>Device Info</h3>
+			<h3>Información del dispositivo</h3>
 		</tr>
 		<tr>
-			<td>Chip Cores:</td>
+			<td>Núcleos del chip:</td>
 			<td>
 				<output id="chip-cores"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>Chip Revision:</td>
+			<td>Revisión del chip:</td>
 			<td>
 				<output id="chip-revision"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>Chip Features:</td>
+			<td>Características del chip:</td>
 			<td>
 				<output id="chip-features"></output>
 			</td>
@@ -114,22 +119,22 @@ table {
 			<col span="1" style="width: 65%;">
 		</colgroup>
 		<tr>			
-			<h3>Host Info</h3>
+			<h3>Información de red</h3>
 		</tr>
 		<tr>
-			<td>Hostname:</td>
+			<td>Nombre del host:</td>
 			<td>
 				<output id="hostname"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>IP Address:</td>	
+			<td>Dirección IP:</td>	
 			<td>
 				<output id="IP-address"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>WLAN SSID:</td>	
+			<td>SSID de la WLAN:</td>	
 			<td>
 				<output id="wlan-ssid"></output>
 			</td>
@@ -142,46 +147,46 @@ table {
 			<col span="1" style="width: 65%;">
 		</colgroup>
 		<tr>			
-			<h3>SD Card Info</h3>
+			<h3>Información de la tarjeta SD</h3>
 		</tr>
 		<tr>
-			<td>SD card manufacturer:</td>
+			<td>Fabricante de la tarjeta SD:</td>
 			<td>
 				<output id="SDCardManufacturer"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>SD card name:</td>
+			<td>Nombre de la tarjeta SD:</td>
 			<td>
 				<output id="SDCardName"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>SD card size:</td>
+			<td>Tamaño de la tarjeta SD:</td>
 			<td>
 				<output id="SDCardCapacity"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>SD card sector size:</td>
+			<td>Tamaño de sector de la SD:</td>
 			<td>
 				<output id="SDCardSectorSize"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>Partition size:</td>
+			<td>Tamaño de la partición:</td>
 			<td>
 				<output id="SDCardPartitionSize"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>Partition free space:</td>	
+			<td>Espacio libre en la partición:</td>	
 			<td>
 				<output id="SDCardFreePartitionSpace"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>Partition allocation size:</td>	
+			<td>Tamaño de asignación de la partición:</td>	
 			<td>
 				<output id="SDCardPartitionAllocationSize"></output>
 			</td>
@@ -194,46 +199,46 @@ table {
 			<col span="1" style="width: 65%;">
 		</colgroup>
 		<tr>			
-			<h3>Memory Info</h3>
+			<h3>Información de memoria</h3>
 		</tr>
 		<tr>
-			<td>Total Free (Int + Ext):</td>	
+			<td>Total libre (int. + ext.):</td>	
 			<td>
 				<output id="RAMTotalFree"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>Ext. RAM - Free:</td>	
+			<td>RAM ext. - libre:</td>	
 			<td>
 				<output id="ExtRAMFree"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>Ext. RAM - Largest Free Block:</td>	
+			<td>RAM ext. - mayor bloque libre:</td>	
 			<td>
 				<output id="ExtRAMLargestFree"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>Ext. RAM - Min Free:</td>	
+			<td>RAM ext. - mínimo libre:</td>	
 			<td>
 				<output id="ExtRAMMinFree"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>Int. RAM - Free:</td>	
+			<td>RAM int. - libre:</td>	
 			<td>
 				<output id="IntRAMFree"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>Int. RAM - Largest Free Block:</td>	
+			<td>RAM int. - mayor bloque libre:</td>	
 			<td>
 				<output id="IntRAMLargestFree"></output>
 			</td>
 		</tr>
 		<tr>
-			<td>Int. RAM - Min Free:</td>	
+			<td>RAM int. - mínimo libre:</td>	
 			<td>
 				<output id="IntRAMMinFree"></output>
 			</td>
@@ -241,8 +246,8 @@ table {
 	</table>
 
 
-<h3>Copyright</h3>
-Copyright &copy; 2020 - 2024 by <a href="https://github.com/jomjol/AI-on-the-edge-device" target=_blank>Jomjol</a> and others.
+<h3>Derechos de autor</h3>
+Copyright © 2020 - 2024 de <a href="https://github.com/jomjol/AI-on-the-edge-device" target=_blank>Jomjol</a> y otros.
 
 </body>
 </html>

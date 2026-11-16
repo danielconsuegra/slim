@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en"> 
+<html lang="es" xml:lang="es"> 
 <head>
-    <title>Data Graph</title>
+    <meta charset="UTF-8">
+    <title>Gráfica de datos</title>
     <script type="text/javascript" src='plotly-basic-2.18.2.min.js?v=$COMMIT_HASH'></script>
 
     <script type="text/javascript" src="common.js?v=$COMMIT_HASH"></script> 
@@ -182,19 +183,24 @@
     <link href="firework.css?v=$COMMIT_HASH" rel="stylesheet">
     <script type="text/javascript" src="jquery-3.6.0.min.js?v=$COMMIT_HASH"></script>  
     <script type="text/javascript" src="firework.js?v=$COMMIT_HASH"></script>
+    <!-- SLIM: tema visual y traduccion de mensajes dinamicos -->
+    <script>window.__slimThemeLoaded=true;try{var p=localStorage.getItem("slim-theme");if(p==="dark"||(!p&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("slim-dark");}catch(e){}</script>
+    <link rel="stylesheet" href="modern.css?v=$COMMIT_HASH">
+    <script type="text/javascript" src="modern.js?v=$COMMIT_HASH"></script>
+    <script type="text/javascript" src="i18n-es.js?v=$COMMIT_HASH"></script>
 </head>
 
 <body>
-    <h2>Data Graph</h2>
-    <div id='chart'><p>Loading...<br></p></div>
-    Number sequence:
+    <h2>Gráfica de datos</h2>
+    <div id='chart'><p>Cargando...<br></p></div>
+    Secuencia numérica:
     <select id="numbers" onchange="run();"></select>
-    Day:
+    Día:
     <select id="datafiles" onchange="run();"></select>
-    <input type="checkbox" id="showRrelativeValues" onclick = 'run();' unchecked ><label for="showRrelativeValues">Show relative values</label><br><br>
-    <button class="button" onclick="run();">Refresh</button>
-    <button class="button" onClick="window.location.href = 'data.html?v=$COMMIT_HASH'">Show Data Viewer</button>
-    <button class="button" onClick="window.location.href = getDomainname() + '/fileserver/log/data/'">Show Data Files</button>
+    <input type="checkbox" id="showRrelativeValues" onclick = 'run();' unchecked ><label for="showRrelativeValues">Mostrar valores relativos</label><br><br>
+    <button class="button" onclick="run();">Actualizar</button>
+    <button class="button" onClick="window.location.href = 'data.html?v=$COMMIT_HASH'">Ver visor de datos</button>
+    <button class="button" onClick="window.location.href = getDomainname() + '/fileserver/log/data/'">Ver archivos de datos</button>
 
 <script>
     function WriteModelFiles()

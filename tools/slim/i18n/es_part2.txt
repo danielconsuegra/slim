@@ -1,0 +1,517 @@
+422|Esta página muestra todos los parámetros de configuración disponibles del dispositivo.
+423|La descripción de cada parámetro se muestra al pasar el ratón por encima o al hacer clic en el
+424|icono.
+425|La página se abre con la vista por defecto, suficiente para las tareas de configuración habituales. Al activar
+426|"Mostrar parámetros avanzados"
+427|se añaden a la lista algunos parámetros avanzados (con fondo rojo claro). Además, aparece arriba el botón
+428|"Editar archivo "Config.ini""
+429|para editar manualmente el archivo de configuración (config.ini). Esta función solo debería usarse en casos especiales.
+430|Las secciones (funcionalidad completa) o los parámetros con casilla se pueden activar o desactivar. Desactivar una sección completa desactiva esa funcionalidad. Si solo se desactiva un parámetro de una sección, se usa su valor por defecto interno.
+431|No olvides guardar los cambios con el botón
+432|al final de esta página.
+433|Para aplicar la nueva configuración hay que reiniciar el dispositivo:
+434|"Reiniciar para aplicar cambios"
+435|Vista de configuración
+436|Editar el archivo de configuración en modo texto
+437|Captura de imagen
+438|Ubicación de imágenes originales
+440|Ubicación en la tarjeta SD donde se guardan las imágenes originales.
+442|Una tarjeta SD tiene ciclos de escritura limitados. Como el dispositivo no hace
+443|nivelación de desgaste
+444|, ¡esto puede desgastar tu tarjeta SD!
+445|Conservación de imágenes originales
+446|Días
+448|Número de días que se conservan las imágenes originales (
+449|= para siempre)
+450|Unidad: días
+451|Espera antes de tomar la foto
+452|Segundos
+454|Tiempo de espera entre encender el flash (LED de la placa) y tomar la foto.
+455|Unidad: segundos
+457|Límite de ganancia
+458|Valor por defecto para ov2640:
+459|Valor por defecto para ov5640:
+460|Una ganancia mayor hace que el sensor responda más a la luz, pero también hace más visible el ruido del sensor.
+462|está activado.
+463|La
+464|ganancia
+465|es un multiplicador analógico que se aplica a los datos brutos del sensor.
+466|El límite
+467|es el valor máximo de ganancia que usará el sensor.
+468|Calidad de imagen
+470|Calidad de imagen
+471|¡Un valor inferior a 10 puede causar inestabilidad del sistema!
+472|Índice de calidad de las fotos:
+473|(máxima calidad) ...
+474|(mínima calidad)
+475|Es similar al ajuste de calidad al exportar una imagen JPEG desde un programa de edición de fotos.
+476|Brillo
+477|Contraste
+478|Saturación
+479|Nitidez
+480|Efecto especial
+481|Modo de balance de blancos
+482|automático
+483|soleado
+484|nublado
+485|oficina
+486|hogar
+488|Modo de balance de blancos
+490|Balance de blancos
+491|Balance de blancos automático
+492|, la cámara intenta controlar el balance de blancos automáticamente.
+493|Balance de blancos automático
+495|Ganancia del balance de blancos automático
+496|Activa/desactiva el control
+497|.
+498|Control automático de exposición
+499|Control automático de exposición 2
+500|Nivel de exposición automática
+501|Valor de exposición automática
+502|Valor de exposición automática
+503|Valor de exposición de la cámara: los valores más altos dan imágenes más claras.
+504|Ganancia automática
+505|Control automático de ganancia
+506|, la cámara intenta controlar automáticamente la ganancia del sensor, hasta el valor de la propiedad
+507|.
+509|Valor manual de ganancia
+510|Valor del control de ganancia
+511|Nivel de ganancia del sensor: los valores más altos dan imágenes más claras.
+512|Corrección de píxeles negros
+514|Corrección de píxeles negros
+515|compensación del punto negro
+516|, esto puede hacer más oscuras las partes negras de la imagen.
+517|Corrección de píxeles blancos
+519|Corrección de píxeles blancos
+520|compensación del punto blanco
+521|, esto puede hacer más blancas las partes blancas de la imagen.
+523|Gamma en bruto
+524|Activa/desactiva el modo gamma en bruto.
+525|La función gamma (GMA) sirve principalmente para compensar las características no lineales del sensor. GMA convierte los valores de los píxeles según la curva gamma para compensar la salida del sensor con distintas intensidades de luz. La curva gamma no lineal se construye aproximadamente con varias funciones lineales. La gamma en bruto compensa la imagen en el dominio RAW.
+526|Corrección de lente
+528|Corrección de lente
+529|Activa/desactiva la corrección de lente.
+530|Ayuda a compensar la pérdida de luz en los bordes del sensor.
+531|Reducción de tamaño
+533|Reducción de tamaño de imagen
+534|está activado, la imagen que recibes tendrá el tamaño solicitado (VGA, QQVGA, etc.).
+535|está desactivado, la imagen que recibes será UXGA, SVGA o CIF.
+536|Si
+537|se usa, esto debe estar activado.
+538|está desactivado y eliges otro tamaño de imagen, esto vuelve a activar implícitamente
+539|.
+540|Reducción de ruido
+542|Reducción de ruido de imagen
+543|Reduce el ruido de la imagen; solo lo admiten OV3660 y OV5640
+544|rango en OV3660 y OV5640 (0 .. 8)
+545|Tamaño del zoom
+546|Desplazamiento zoom X
+547|Píxeles
+548|Desplazamiento zoom Y
+549|Intensidad del LED
+550|Modo demo
+552|Actívalo para usar imágenes de demostración en lugar de las imágenes reales de la cámara. Asegúrate de tener una carpeta
+554|en tu tarjeta SD y de que contenga los archivos esperados. Consulta
+555|para más detalles.
+556|Campo de búsqueda X
+558|Unidad: píxeles
+559|Tamaño X (ancho) en el que se busca la referencia.
+560|Como la alineación es uno de los pasos que más tiempo de cálculo consume, el campo de búsqueda debe ser lo más pequeño posible. El tiempo de cálculo crece de forma cuadrática con el tamaño del campo.
+561|Campo de búsqueda Y
+563|Tamaño Y (alto) en el que se busca la referencia.
+564|Algoritmo de alineación
+565|Por defecto
+566|Alta precisión
+567|Rápido
+568|Desactivado
+570|Algoritmo usado en el paso de alineación.
+571|: usa solo el canal de color rojo
+572|: usa los 3 canales de color (3 veces más lento)
+573|: la primera vez usa
+574|y después solo comprueba si la imagen se ha desplazado
+575|: desactiva el algoritmo de alineación
+576|Ángulo de rotación
+577|Modelo
+579|(Ver
+581|Ruta al archivo del modelo CNN para el reconocimiento de imagen. Ver
+582|Umbral de confianza CNN
+584|Umbral por encima del cual debe estar la clasificación para aceptar el valor (solo tiene sentido en dígitos).
+585|¡Solo es compatible con los modelos
+587|!
+588|Ubicación de imágenes de ROI
+591|Ubicación en la tarjeta SD donde se guardan las imágenes de cada dígito.
+592|Conservación de imágenes de ROI
+594|Días que se conservan las imágenes de cada dígito (
+595|= para siempre).
+598|Ubicación en la tarjeta SD donde se guardan las imágenes analógicas.
+599|Días que se conservan las imágenes analógicas (
+600|Posprocesamiento
+602|Usa el valor previo (de la ronda anterior) para comprobar la consistencia. ¡También funciona después de reiniciar el dispositivo!
+603|Antigüedad máxima del valor previo tras el arranque
+604|Minutos
+606|Tiempo en minutos durante el cual un valor leído sigue siendo válido tras reiniciar.
+607|Omitir mensajes de error
+609|No mostrar el mensaje de error en el valor devuelto. En caso de error, se usará el último número válido en los distintos protocolos de envío (MQTT, InfluxDB, REST...).
+610|Los siguientes parámetros se configuran por separado para cada secuencia numérica:
+611|Permitir cambio negativo
+613|Permite que un contador cuente hacia atrás (valores decrecientes).
+614|¡Es poco habitual (significa que hay un cambio negativo) y no se desea en la mayoría de los casos!
+615|Si editas el archivo de configuración a mano, debes poner delante de este parámetro
+617|seguido de un punto (p. ej.
+619|). El motivo es que este parámetro es específico de cada
+620|es el nombre de la secuencia numérica definida en las ROIs).
+621|Desplazamiento decimal
+623|Desplaza el separador decimal (positivo o negativo). P. ej., para pasar de
+624|a
+625|litros
+626|equivale a
+627|1000 litros
+628|), debes ponerlo en
+630|Inicio de transición analógico a dígito
+632|Puede usarse si obtienes valores erróneos aunque el reconocimiento de cada ROI sea correcto. Busca el momento en que empieza a cambiar el primer dígito y anota el valor de la aguja analógica que va detrás. Ponlo aquí. Solo se usa con combinaciones de dígitos y agujas analógicas. Ver
+633|Rango:
+635|Valor de cambio máximo
+637|Cambio máximo permitido entre dos lecturas; si se supera, se rechaza la última lectura. Según el ajuste de
+639|el
+640|se trata como la diferencia entre las dos mediciones (
+642|= diferencia) sin tener en cuenta el intervalo de tiempo, o como la diferencia normalizada al intervalo (
+644|= diferencia por minuto).
+645|Si no se permiten cambios negativos y no hay valor de cambio máximo, una lectura alta errónea provocará un periodo sin mediciones hasta que el contador alcance esa lectura errónea. P. ej., si el contador está en
+646|y se lee erróneamente como
+647|, se descartarán todas las mediciones hasta que el contador llegue a
+648|. Poner MaxRateValue en
+649|rechaza todas las lecturas con una diferencia
+650|, en este caso
+651|. El rechazo también se aplica a lecturas correctas con una diferencia
+653|Tipo de cambio máximo
+655|Define si el
+656|cambio
+657|se calcula como la diferencia entre las dos últimas lecturas (
+658|= diferencia) o como la diferencia normalizada al intervalo (
+660|Umbral de cambio
+662|Parámetro de umbral para detectar cambios.
+663|Este parámetro sirve para compensar pequeñas fluctuaciones de lectura cuando el contador no cambia durante mucho tiempo (p. ej. de noche) o retrocede ligeramente. Puede pasar, por ejemplo, en contadores de agua.
+664|Solo se aplica al último dígito del valor leído (ver el ejemplo de abajo). Si el valor leído está dentro de ValorPrevio +/- Umbral, no se hace ningún cálculo más y el valor/valor previo se mantiene.
+666|Ejemplo
+667|La ROI más pequeña da el valor de
+668|(p. ej. un contador de agua con 4 agujas tras la coma decimal)
+670|Con
+672|desactivado
+673|Valor previo:
+674|-> Umbral =
+675|Todos los cambios entre
+676|se ignoran
+677|activado
+678|se ignoran.
+679|Resolución extendida
+680|Usa el decimal del último contador analógico para mayor precisión.
+681|¡Este parámetro solo es compatible con los modelos
+684|! Ver
+685|Elegir el modelo
+687|Ignorar NaN iniciales
+689|Los
+690|iniciales se eliminan antes de seguir procesando. Solo es relevante en modelos que usan
+691|. Ver
+693|Comprobar consistencia del aumento de dígitos
+695|Una comprobación de consistencia adicional. Mejora especialmente la comprobación del paso por cero entre dígitos.
+701|URI del broker MQTT, incluido el puerto. P. ej.
+703|Tema principal
+706|Tema principal de MQTT bajo el que se publican los contadores.
+707|Cada valor se publica con la siguiente clave:
+709|Donde:
+711|: el nombre del valor (un contador puede tener más de un valor). Los nombres se definen en la configuración de ROIs de dígitos y analógicas (por defecto
+714|: se rellena automáticamente con el nombre correcto, p. ej.
+719|El estado general de la conexión está en
+721|. Ver
+722|Temas de resultados MQTT
+723|para la lista completa de temas.
+724|El tema principal puede contener
+725|para dividirlo en varios niveles, p. ej.
+727|si tienes varios contadores de agua en el sótano.
+728|El nodeId del descubrimiento de servicios MQTT de Home Assistant debe seguir el esquema
+730|. El node_id no se puede configurar: se obtiene del
+731|eliminando todos los niveles excepto el último. Un
+732|con el valor
+734|se convierte en el node_id
+735|, dando como resultado el tema de descubrimiento
+737|para el valor actual.
+738|ID de cliente
+740|ID de cliente para conectarse al broker MQTT. Si está desactivado, se usará el
+741|nombre del host
+742|.
+743|Usuario
+746|Usuario para la autenticación MQTT.
+747|Contraseña
+750|Contraseña para la autenticación MQTT.
+751|Archivo del certificado CA raíz
+753|Ejemplo:
+755|Ruta al archivo del certificado CA.
+756|Forma parte de la configuración para activar TLS 1.2 en MQTT.
+757|El cliente usa el certificado CA para comprobar que el broker es quien dice ser. Permite al cliente autenticar al servidor, que es la primera parte del handshake MTLS.
+758|Normalmente hay un certificado CA raíz común para el broker MQTT. Más información
+759|Para saber cómo crear tu propio certificado, consulta:
+761|o
+763|Esto también significa que quizá tengas que cambiar el protocolo y el puerto en
+766|¡Solo se admiten certificados de hasta 4096 bits!
+767|Archivo del certificado de cliente
+770|Ruta al archivo del certificado de cliente.
+771|El cliente usa su certificado para demostrar su identidad al servidor, junto con la clave de cliente. Es la segunda parte del handshake MTLS.
+772|Normalmente hay un par certificado/clave de cliente por cada cliente que se conecta al broker MQTT. Más información
+773|Si se define,
+775|también debe definirse. Esto también significa que quizá tengas que cambiar el protocolo y el puerto en
+776|Archivo de la clave de cliente
+778|Ruta al archivo de la clave de cliente.
+779|El cliente usa su clave para demostrar su identidad al servidor, junto con el certificado de cliente. Es la segunda parte del handshake MTLS.
+780|Normalmente hay un par certificado/clave de cliente por cada cliente que se conecta al broker MQTT
+781|Validar certificado del servidor
+783|Activa o desactiva la validación del campo CN del certificado del servidor.
+784|, el certificado enviado por el servidor se valida con el configurado
+785|El nombre del servidor en
+786|se compara con el campo CN del certificado del servidor.
+787|Solo se establece la conexión si coinciden. Garantiza el origen del servidor.
+788|, el ESP32 omite cualquier validación del campo CN del certificado del servidor.
+789|Esto reduce la seguridad de TLS y hace al
+790|cliente vulnerable a ataques MITM.
+791|Esto también significa que quizá tengas que cambiar el protocolo y el puerto en
+792|Si usas brokers públicos, se recomienda poner este parámetro en "activado (true)".
+793|Retener mensajes
+795|Activa o desactiva la
+796|marca de retención
+797|para todas las entradas MQTT.
+798|Desactivarlo (poner en
+799|) no borra el último valor retenido en el broker MQTT. Hay que hacerlo manualmente, ver
+800|¿Cómo borrar mensajes retenidos en MQTT?
+801|y este
+802|Descubrimiento de Home Assistant (por MQTT)
+803|Si está activado, los temas de descubrimiento se programan automáticamente para enviarse una vez tras arrancar el dispositivo, durante el estado "Publicar en MQTT". Para programar un reenvío: usa "Control manual > Reenviar descubrimiento HA" o llama a la API REST:
+805|Descubrimiento de Home Assistant
+807|Activa o desactiva el descubrimiento de Home Assistant. Ver
+808|para más detalles sobre el descubrimiento.
+809|Tipo de contador
+810|Otro (sin unidades)
+811|Contador de agua (Valor: m³, Caudal: m³/h)
+812|Contador de agua (Valor: l, Caudal: l/h) ⚠️ ¡No compatible con Home Assistant 2025.7 o posterior! ⚠️
+813|Contador de agua (Valor: gal, Caudal: gal/h) ⚠️ ¡No compatible con Home Assistant 2025.7 o posterior! ⚠️
+814|Contador de agua (Valor: gal, Caudal: gal/min)
+815|Contador de agua (Valor: ft³, Caudal: ft³/min)
+816|Contador de gas (Valor: m³, Caudal: m³/h)
+817|Contador de gas (Valor: ft³, Caudal: ft³/min)
+818|Contador de energía (Valor: Wh, Potencia: W)
+819|Contador de energía (Valor: kWh, Potencia: kW)
+820|Contador de energía (Valor: MWh, Potencia: MW)
+821|Contador de energía (Valor: GJ, Potencia: GJ/h) ⚠️ ¡No compatible con Home Assistant 2025.7 o posterior! ⚠️
+822|Termómetro (Valor: °C, Cambio: °C/min)
+823|Termómetro (Valor: °F, Cambio: °F/min)
+824|Termómetro (Valor: K, Cambio: K/min)
+827|Elige el tipo de contador para que los sensores tengan las unidades correctas en Home Assistant.
+828|Asegúrate también de que el tipo elegido coincide con la magnitud del valor que da el contador. P. ej., si tu contador da
+829|, también debes ponerlo en
+830|. Otra opción es ajustar el parámetro
+831|para convertir el valor a
+832|litros
+833|Lista de opciones disponibles:
+835|(usa
+836|como caudal)
+838|⚠️ ¡No compatible con Home Assistant 2025.7 o posterior! ⚠️
+860|No todas las opciones son compatibles con Home Assistant, ver
+862|en
+864|Desde Home Assistant 2025.7 las opciones no compatibles dejan de funcionar; ver el cambio en Home Assistant:
+865|Asegurar que el sensor MQTT tenga una unidad de medida nativa válida
+866|Tema "in" de Domoticz
+869|Tema "in" de Domoticz tal como está configurado en la página "MQTT Client Gateway" del sistema Domoticz. Se usa para publicar el/los valor(es) del contador.
+870|Se requiere el parámetro <NUMBER>.DomoticzIDX (ver abajo).
+871|Idx del contador en Domoticz:
+873|Número Idx del dispositivo contador. Se obtiene en la página de configuración de dispositivos del sistema Domoticz.
+876|sin definir
+877|URI de la interfaz HTTP de InfluxDB v1, sin barra final, p. ej.
+879|Ver la sección
+881|para soporte de InfluxDB v2.
+882|Base de datos
+883|Nombre de la base de datos InfluxDB v1 en la que publicar los valores.
+884|Usuario para la autenticación en InfluxDB v1.
+885|Contraseña para la autenticación en InfluxDB v1.
+886|Parámetro por secuencia numérica:
+887|Medición
+888|Nombre de la medición (Measurement) de InfluxDB v1 usada para publicar el valor.
+889|Campo
+890|Definición del campo de InfluxDB usado para guardar en la base de datos Influx (p. ej.: "watermeter/value").
+893|URI de la interfaz HTTP de InfluxDB v2, sin barra final, p. ej.
+895|Nombre del bucket de InfluxDB v2 en el que publicar los valores.
+896|Organización (Org)
+898|Organización (Org) para la autenticación en InfluxDB v2
+900|Token para la autenticación en InfluxDB v2
+901|Nombre de la medición (Measurement) de InfluxDB v2 usada para publicar el valor.
+902|Campo de InfluxDB v2 usado para guardar.
+904|URI del punto HTTP que recibe las peticiones, p. ej.
+907|ApiKey enviada como cabecera
+908|Subir imagen
+909|NUNCA
+910|SIEMPRE
+911|SOLO_EN_ERROR
+913|GPIO (entradas/salidas de uso general)
+914|Configuración de GPIO0
+915|entrada
+916|entrada con pull-up
+917|entrada con pull-down
+918|salida
+921|Este parámetro configura el pin GPIO
+922|.
+923|¡Este pin solo se puede usar con restricciones! Debe estar desactivado si se usa la cámara. Además, se usa para activar el modo bootloader, por lo que debe estar en ALTO tras un reinicio.
+924|Parámetros:
+925|Estado de GPIO 0
+926|: uno de
+927|Interrupción de GPIO 0
+928|: activa el disparo por interrupción
+929|Resolución PWM de GPIO 0
+930|: resolución del ciclo de trabajo PWM de LEDC, en bits
+931|MQTT en GPIO 0
+932|: activa la publicación/suscripción MQTT
+933|HTTP en GPIO 0
+934|: activa la escritura/lectura por HTTP
+935|Nombre de GPIO 0
+936|: nombre del tema MQTT (vacío =
+938|). Caracteres permitidos:
+939|GPIO0 usar interrupción
+940|flanco de subida
+941|flanco de bajada
+942|subida y bajada
+943|disparo por nivel bajo
+944|disparo por nivel alto
+945|GPIO0 resolución del ciclo PWM
+947|GPIO0 activar MQTT
+948|GPIO0 activar API REST
+949|GPIO0 nombre
+950|Configuración de GPIO1
+952|¡Este pin se usa por defecto para la comunicación serie como pin TX (registro por USB)!
+953|Estado de GPIO 1
+954|Interrupción de GPIO 1
+955|Resolución PWM de GPIO 1
+956|MQTT en GPIO 1
+957|HTTP en GPIO 1
+958|Nombre de GPIO 1
+960|GPIO1 usar interrupción
+961|GPIO1 resolución del ciclo PWM
+962|GPIO1 activar MQTT
+963|GPIO1 activar API REST
+964|GPIO1 nombre
+965|Configuración de GPIO3
+967|¡Este pin se usa por defecto para la comunicación serie como pin RX (registro por USB)!
+968|Estado de GPIO 3
+969|Interrupción de GPIO 3
+970|Resolución PWM de GPIO 3
+971|MQTT en GPIO 3
+972|HTTP en GPIO 3
+973|Nombre de GPIO 3
+975|GPIO3 usar interrupción
+976|GPIO3 resolución del ciclo PWM
+977|GPIO3 activar MQTT
+978|GPIO3 activar API REST
+979|GPIO3 nombre
+980|Configuración de GPIO4
+981|LED flash integrado
+984|¡Este pin solo se puede usar con restricciones! Por defecto se usa para el flash integrado (LED de la placa).
+985|Estado de GPIO 4
+987|Interrupción de GPIO 4
+988|Resolución PWM de GPIO 4
+989|MQTT en GPIO 4
+990|HTTP en GPIO 4
+991|Nombre de GPIO 4
+993|NOTA IMPORTANTE:
+994|Si quieres usar el LED flash integrado junto con otras funciones GPIO, debes activar expresamente la opción "LED flash integrado" en GPIO4. El control de intensidad (PWM) del LED flash deja de funcionar (solo 100 %).
+995|GPIO4 usar interrupción
+996|GPIO4 resolución del ciclo PWM
+997|GPIO4 activar MQTT
+998|GPIO4 activar API REST
+999|GPIO4 nombre
+1000|Configuración de GPIO12
+1001|flash externo controlado por ws281x
+1004|¡Este pin se puede usar sin restricciones conocidas!
+1005|Estado de GPIO 12
+1007|Interrupción de GPIO 12
+1008|Resolución PWM de GPIO 12
+1009|MQTT en GPIO 12
+1010|HTTP en GPIO 12
+1011|Nombre de GPIO 12
+1013|GPIO12 usar interrupción
+1014|GPIO12 resolución del ciclo PWM
+1015|GPIO12 activar MQTT
+1016|GPIO12 activar API REST
+1017|GPIO12 nombre
+1018|Tipo de LED (NeoPixel)
+1022|WS2813 (no probado)
+1024|Tipo de
+1026|conectado a GPIO12 (ver el parámetro
+1027|).
+1028|Número de LEDs
+1030|Número de LEDs de la tira LED externa conectada a GPIO12 (ver
+1031|Color del LED
+1033|Color de los LEDs conectados a GPIO12 en
+1034|ed (rojo),
+1035|reen (verde),
+1036|lue (azul) de
+1037|(apagado) ..
+1038|(máximo) (ver
+1039|Configuración de GPIO13
+1041|Estado de GPIO 13
+1042|Interrupción de GPIO 13
+1043|Resolución PWM de GPIO 13
+1044|MQTT en GPIO 13
+1045|HTTP en GPIO 13
+1046|Nombre de GPIO 13
+1048|GPIO13 usar interrupción
+1049|GPIO13 resolución del ciclo PWM
+1050|GPIO13 activar MQTT
+1051|GPIO13 activar API REST
+1052|GPIO13 nombre
+1053|Temporizador automático
+1054|Intervalo de lectura
+1055|Intervalo
+1056|Unidad: minutos
+1057|Intervalo con el que se ejecuta el proceso (ronda de digitalización). Se ejecuta nada más arrancar y después cada vez que pasa el intervalo. Si una ronda dura más que el intervalo, la siguiente se pospone hasta que termine la actual.
+1058|Si el proceso se inicia por un mensaje MQTT o por la API REST, el intervalo se reinicia automáticamente.
+1059|Si quieres desactivar el proceso, pon un intervalo suficientemente alto (p. ej. 1440 = 24 h).
+1060|Registro de datos
+1062|Activa el registro de datos en la tarjeta SD.
+1063|Los archivos se guardan en
+1065|Conservación de archivos de datos
+1067|Número de días que se conservan los archivos de datos (
+1069|Nivel del registro
+1070|ERROR
+1071|ADVERTENCIA
+1072|INFO
+1073|DEPURACIÓN
+1075|) Define el nivel de registro en la tarjeta SD.
+1076|Cuanto más alto el nivel, más mensajes se escriben en la tarjeta SD.
+1077|puede dañar la tarjeta SD si se mantiene activado mucho tiempo por exceso de escrituras. Una tarjeta SD tiene ciclos de escritura limitados. Como el dispositivo no hace
+1078|Conservación de registros
+1080|Número de días que se conservan los archivos de registro (
+1081|Zona horaria
+1082|Usa
+1083|zonas horarias
+1084|para encontrar tu ajuste
+1087|Zona horaria en sintaxis POSIX (Europa/Berlín =
+1088|- incluye horario de verano). Consulta la tabla en
+1090|para encontrar el ajuste de tu región.
+1091|Servidor de hora (NTP)
+1094|Servidor de hora para sincronizar el reloj del sistema. Si está desactivado o
+1095|se usará. También puedes poner la IP de tu router: muchos routers pueden actuar como servidor NTP local. Para desactivar NTP, actívalo pero deja vacío el ajuste TimeServer (
+1096|). En ese caso la hora siempre empieza en
+1097|después de cada encendido.
+1098|Nombre del host
+1099|Nombre del host del dispositivo. Se copia automáticamente a
+1101|en la tarjeta SD en el siguiente arranque.
+1102|Umbral RSSI
+1105|Valores posibles:
+1106|= desactivado).
+1107|Este parámetro activa un cambio de punto de acceso iniciado por el cliente (roaming simplificado). Si el RSSI actual es menor (más negativo) que
+1108|, se buscan en todos los canales WiFi puntos de acceso con el SSID configurado. Si hay uno al alcance con mejor RSSI (menos negativo) que el actual + 5 dBm, el dispositivo intenta conectarse a ese punto de acceso.
+1109|La comprobación de RSSI solo se inicia al final de cada ronda para no interferir con el procesamiento.
+1110|Se copia automáticamente a
+1111|en la tarjeta SD en el siguiente arranque.
+1112|Frecuencia de la CPU
+1116|Ajusta la frecuencia de la CPU.
+1117|Ponerla en 240 hace el dispositivo más rápido, pero necesita una fuente de alimentación más potente. Además, según la calidad de tu ESP32-CAM, puede volverse inestable.
+1118|Ayudas emergentes
+456|Límite de ganancia
+522|Gamma en bruto
+1068|Depuración

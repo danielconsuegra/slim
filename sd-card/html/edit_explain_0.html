@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en"> 
+<html lang="es" xml:lang="es"> 
 <head>
-<title>AI on the edge</title>
+<title>SLIM</title>
 <meta charset="UTF-8" />
 
 <style>
@@ -13,60 +13,62 @@ p {font-size: 1em;}
 
 
 </style>
+    <!-- SLIM: tema visual y traduccion de mensajes dinamicos -->
+    <script>window.__slimThemeLoaded=true;try{var p=localStorage.getItem("slim-theme");if(p==="dark"||(!p&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("slim-dark");}catch(e){}</script>
+    <link rel="stylesheet" href="modern.css?v=$COMMIT_HASH">
+    <script type="text/javascript" src="modern.js?v=$COMMIT_HASH"></script>
+    <script type="text/javascript" src="i18n-es.js?v=$COMMIT_HASH"></script>
 </head>
 
 <body style="font-family: arial">
 
-    <h2>Welcome to the setup of the AI-on-the-edge-device</h2>
+    <h2>Bienvenido a la configuración de SLIM</h2>
 
 
     <p>
-        <img src="flow_overview.jpg" alt=""><img src="cnn_images.jpg" alt="">
+        <div class="slim-partners"><a class="slim-partner"><svg class="slim-logo slim-logo-lumens" viewBox="0 0 206 72" role="img" aria-label="LUMENS IoT SLIM"><defs><linearGradient id="slimWg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#6366f1"/></linearGradient><linearGradient id="slimWt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0ea5e9"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs><rect x="4" y="6" width="60" height="60" rx="16" fill="url(#slimWg)"/><rect x="4" y="6" width="60" height="30" rx="16" fill="#fff" fill-opacity=".10"/><g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M30.2 18.6 A5.4 5.4 0 0 1 37.8 18.6"/><path d="M26.4 14.8 A10.8 10.8 0 0 1 41.6 14.8"/></g><circle cx="34" cy="21.6" r="1.9" fill="#fff"/><rect x="14" y="26" width="40" height="30" rx="8" fill="#ffffff"/><rect x="19" y="32" width="30" height="12" rx="3" fill="#0f172a"/><g fill="#38bdf8"><rect x="22" y="34.5" width="4.4" height="7" rx="1"/><rect x="28.6" y="34.5" width="4.4" height="7" rx="1"/><rect x="35.2" y="34.5" width="4.4" height="7" rx="1"/></g><rect x="41.8" y="34.5" width="4.4" height="7" rx="1" fill="#f59e0b"/><circle cx="27" cy="50" r="2.2" fill="#6366f1"/><circle cx="34" cy="50" r="2.2" fill="#0ea5e9"/><circle cx="41" cy="50" r="2.2" fill="#6366f1"/><g font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="800"><text x="76" y="34" font-size="26" letter-spacing="1.6" fill="currentColor">LUMENS</text><text x="77" y="60" font-size="21" letter-spacing="1"><tspan fill="url(#slimWt)">IoT</tspan><tspan fill="currentColor" dx="7">SLIM</tspan></text></g></svg></a><a class="slim-partner" href="https://website.lecta.com.co/" target="_blank" rel="noopener"><svg class="slim-logo slim-logo-lecta" viewBox="0 0 150 48" role="img" aria-label="LECTA"><defs><linearGradient id="slimWbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1d47"/><stop offset="1" stop-color="#173a7a"/></linearGradient><radialGradient id="slimWglow" cx=".18" cy=".2" r=".7"><stop offset="0" stop-color="#38bdf8" stop-opacity=".35"/><stop offset="1" stop-color="#38bdf8" stop-opacity="0"/></radialGradient><linearGradient id="slimWe" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs><rect width="150" height="48" rx="10" fill="url(#slimWbg)"/><rect width="150" height="48" rx="10" fill="url(#slimWglow)"/><g fill="#ffffff"><rect x="17" y="12" width="6.4" height="24" rx="1"/><rect x="17" y="29.6" width="17" height="6.4" rx="1"/></g><g fill="url(#slimWe)"><rect x="38" y="12" width="17" height="6" rx="1.2"/><rect x="38" y="21" width="13.5" height="6" rx="1.2"/><rect x="38" y="30" width="17" height="6" rx="1.2"/></g><text x="58" y="36" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="33.5" letter-spacing="1" fill="#ffffff">CTA</text></svg></a></div>
     </p>
 
     <p>
-        This is the first time you started the device after the initial installation. You have been automatically routed to the <b>initial setup procedure</b>. 
-        With the prodecure the basic setup of your device within seven steps will be performed. After completion of all steps the setup mode will be completed
-        and the device restarts automatically to the regular web interface.<br>
-        Note: All settings of the initial setup will be also accessible using regular web interface.
-        See documentation: <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/initial-setup target=_blank>Initial setup procedure</a> for additional explanations.</p>
+        Es la primera vez que inicias el dispositivo tras la instalación inicial. Se te ha dirigido automáticamente al <b>procedimiento de configuración inicial</b>. Con este procedimiento se realiza la configuración básica del dispositivo en siete pasos. Al completarlos, el modo de configuración termina y el dispositivo se reinicia automáticamente en la interfaz web normal.<br>
+        Nota: todos los ajustes de la configuración inicial también están disponibles en la interfaz web normal. Consulta la documentación: <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/initial-setup target=_blank>Procedimiento de configuración inicial</a> para más explicaciones.</p>
     </p>
-    <p> You can navigate forward and backward during the setup with the buttons "Next Step" and "Previous Step".<br>
-        With the button "Abort Setup" the setup will be skipped and abort screen will be presented.<br>
-        To restart the setup process, push the button "Restart Setup".
+    <p> Puedes avanzar y retroceder durante la configuración con los botones "Siguiente paso" y "Paso anterior".<br>
+        Con el botón "Cancelar configuración" se omite la configuración y se muestra la pantalla de cancelación.<br>
+        Para reiniciar el proceso de configuración, pulsa el botón "Reiniciar configuración".
     </p>
     <p>
-        This is an overview over the seven steps:
+        Este es un resumen de los siete pasos:
     </p>    
     <p>
     <ol>
-    <li><p>Adjust <b>lens focus</b> and check for <b>reflections of flashlight</b>.<br>
-        Ensure you camera lens has proper focus to object and flashlight do not create any distoring reflections.</p></li>
-    <li><p>Create the <b>reference image</b>.<br>
-        It is the base for the position referencing and the identification of the digits and counters.</p></li>
-    <li><p>Define two unique <b>alignment marker</b>.<br>
-        They are used to perform an orientation alignment of the taken camera images before further processing</p></li>
-    <li></p>Define <b>ROI's</b> for the <b>digits</b>.<br>
-        They will be used to digitize the digit part of your meter.<br>
-        NOTE: If your meter has no digits, this step can be skipped.</p></li>
-    <li>Define <b>ROI's</b> for the <b>analog counters</b>.<br>
-        They will be used to digitize the analog part of your meter.<br>
-        NOTE: If your meter has no analog counters, this step can be skipped.</p></li>
-    <li><p><b>Additional configuration:</b> List of all parameters<br>
-        Further configuration of your device can be done here.<br>
-        NOTE: This can also be performed later with regular web interface, e.g. to setup any publishing service like MQTT</p>
+    <li><p>Ajustar el <b>enfoque de la lente</b> y comprobar los <b>reflejos del flash</b>.<br>
+        Asegúrate de que la lente de la cámara esté bien enfocada al objeto y de que el flash no produzca reflejos que distorsionen la imagen.</p></li>
+    <li><p>Crear la <b>imagen de referencia</b>.<br>
+        Es la base para referenciar posiciones e identificar los dígitos y contadores.</p></li>
+    <li><p>Definir dos <b>marcas de alineación únicas</b>.<br>
+        Se usan para alinear la orientación de las fotos de la cámara antes de procesarlas</p></li>
+    <li></p>Definir las <b>ROIs</b> de los <b>dígitos</b>.<br>
+        Se usarán para digitalizar la parte de dígitos de tu contador.<br>
+        NOTA: si tu contador no tiene dígitos, puedes saltar este paso.</p></li>
+    <li>Definir las <b>ROIs</b> de los <b>contadores analógicos</b>.<br>
+        Se usarán para digitalizar la parte analógica de tu contador.<br>
+        NOTA: si tu contador no tiene contadores analógicos, puedes saltar este paso.</p></li>
+    <li><p><b>Configuración adicional:</b> Lista de todos los parámetros<br>
+        Aquí puedes hacer más ajustes del dispositivo.<br>
+        NOTA: esto también se puede hacer después desde la interfaz web normal, p. ej. para configurar un servicio de publicación como MQTT</p>
     </li>
-    <li><p><b>Setup Completion:</b> End/Abort setup mode<br>
-        In the final step the setup mode needs to be properly terminated by pushing the button in this page.<br>
-        NOTE: This is important, otherwise the setup mode is recalled again after reboot.</p>
+    <li><p><b>Finalizar configuración:</b> Terminar/cancelar el modo de configuración<br>
+        En el paso final hay que terminar correctamente el modo de configuración pulsando el botón de esa página.<br>
+        NOTA: esto es importante; de lo contrario, el modo de configuración vuelve a aparecer tras reiniciar.</p>
     </li>
     </ol>
 
-<p>Please be patient when switching to another step. The device takes some time to load all needed information!</p>
+<p>Ten paciencia al cambiar de paso. ¡El dispositivo tarda un poco en cargar toda la información necesaria!</p>
 
-<p>If you need support, have a look to the <a href=https://jomjol.github.io/AI-on-the-edge-device-docs target=_blank>documentation</a> or the <a href=https://github.com/jomjol/AI-on-the-edge-device/discussions target=_blank>discussion</a> pages.</p>
+<p>Si necesitas ayuda, consulta la <a href=https://jomjol.github.io/AI-on-the-edge-device-docs target=_blank>documentación</a> o las páginas de <a href=https://github.com/jomjol/AI-on-the-edge-device/discussions target=_blank>discusión</a> .</p>
 
-<p><b>Have fun with your AI-on-the-edge-device!</b></p>
+<p><b>¡Disfruta SLIM!</b></p>
 
 </body>
 </html>

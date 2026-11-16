@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en">
+<html lang="es" xml:lang="es">
 <head>
-    <title>OTA Update</title>
+    <title>Actualización OTA</title>
     <meta charset="UTF-8" />
 
     <style>
@@ -29,31 +29,36 @@
     <script type="text/javascript" src="jquery-3.6.0.min.js?v=$COMMIT_HASH"></script>
     <script type="text/javascript" src="common.js?v=$COMMIT_HASH"></script>
     <script type="text/javascript" src="firework.js?v=$COMMIT_HASH"></script>
+    <!-- SLIM: tema visual y traduccion de mensajes dinamicos -->
+    <script>window.__slimThemeLoaded=true;try{var p=localStorage.getItem("slim-theme");if(p==="dark"||(!p&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("slim-dark");}catch(e){}</script>
+    <link rel="stylesheet" href="modern.css?v=$COMMIT_HASH">
+    <script type="text/javascript" src="modern.js?v=$COMMIT_HASH"></script>
+    <script type="text/javascript" src="i18n-es.js?v=$COMMIT_HASH"></script>
 </head>
 
 <body style="font-family: arial; padding: 0px 10px;">
-    <h2>OTA Update</h2>
-    <p>Check the <a href="https://github.com/jomjol/AI-on-the-edge-device/releases" target=_blank>Release Page</a> to see if there is an update available. </p>
-    <p>You can also automatically get notified about a release, see <a href="https://jomjol.github.io/AI-on-the-edge-device-docs/New-Releases-Notification" target=_blank>Release Notifications</a>.</p>
+    <h2>Actualización OTA</h2>
+    <p>Consulta la <a href="https://github.com/jomjol/AI-on-the-edge-device/releases" target=_blank>página de versiones</a> para ver si hay alguna actualización disponible. </p>
+    <p>También puedes recibir avisos automáticos de nuevas versiones, consulta <a href="https://jomjol.github.io/AI-on-the-edge-device-docs/New-Releases-Notification" target=_blank>Avisos de versiones</a>.</p>
 
-    <h3>Update</h3>
-    On the <a href="https://github.com/jomjol/AI-on-the-edge-device/releases" target=_blank>Release Page</a>, pick the <i><span style="font-family:monospace">AI-on-the-edge-device__update__*.zip</span></i> file!</p>
-    <p>Alternatively the following file types are supported:</p>
+    <h3>Actualizar</h3>
+    En la <a href="https://github.com/jomjol/AI-on-the-edge-device/releases" target=_blank>página de versiones</a>, elige el archivo <i><span style="font-family:monospace">AI-on-the-edge-device__update__*.zip</span></i> .</p>
+    <p>También se admiten estos tipos de archivo:</p>
     <ul>
-        <li><span style="font-family:monospace">*.zip</span> &rarr; Gets unpacked on the SD-Card (most top folder)</li>
-        <li><span style="font-family:monospace">*.bin</span> &rarr; gets installed onto the ESP32s program flash</li>
-        <li><span style="font-family:monospace">*.tfl/tflite</span> &rarr; Gets copied to your <i>SD-Card/config</i></li>
+        <li><span style="font-family:monospace">*.zip</span> → Se descomprime en la tarjeta SD (carpeta raíz)</li>
+        <li><span style="font-family:monospace">*.bin</span> → Se instala en la memoria de programa del ESP32</li>
+        <li><span style="font-family:monospace">*.tfl/tflite</span> → Se copia en tu <i>SD-Card/config</i></li>
     </ul>
 
-    <p><b>Do not reload this page or switch to another page while the update is in progress!</b><br></p>
+    <p><b>¡No recargues esta página ni cambies de página mientras se instala la actualización!</b><br></p>
 
     <form id="upload_form" enctype="multipart/form-data" method="post">
         <input type="file" accept=".bin,.zip,.tfl,.tflite" name="file_selector" id="file_selector" onchange="validate_file()"><br><br>
 
-        <button class="button" id="start_OTA_button" type="button" onclick="start_OTA()" disabled>Upload And Install</button>
+        <button class="button" id="start_OTA_button" type="button" onclick="start_OTA()" disabled>Subir e instalar</button>
         <br><br>
         <progress id="progressBar" value="0" max="100" style="width:600px;"></progress>
-        <h3><span id="status">Status: Idle</span></h3>
+        <h3><span id="status">Estado: en espera</span></h3>
         <p id="loaded_n_total"></p>
     </form>
     
@@ -83,19 +88,19 @@
 
             /* Various checks on filename length and file size */
             if (fileInput.length == 0) {
-                firework.launch('No file selected!', 'danger', 30000);
+                firework.launch('¡No has seleccionado ningún archivo!', 'danger', 30000);
                 return;
             } else if (filename.length == 0) {
-                firework.launch('File path on server is not set!', 'danger', 30000);
+                firework.launch('¡No se ha indicado la ruta en el servidor!', 'danger', 30000);
                 return;
             } else if (filename.length > 100) {
-                firework.launch('Filename is too long! Max 100 characters.', 'danger', 30000);
+                firework.launch('¡El nombre del archivo es demasiado largo! Máximo 100 caracteres.', 'danger', 30000);
                 return;
             } else if (filename.indexOf(' ') >= 0) {
-                firework.launch('Filename can not have spaces!', 'danger', 30000);
+                firework.launch('¡El nombre del archivo no puede tener espacios!', 'danger', 30000);
                 return;
             } else if (filename[filename.length-1] == '/') {
-                firework.launch('Filename not specified after path!', 'danger', 30000);
+                firework.launch('¡Falta el nombre del archivo tras la ruta!', 'danger', 30000);
                 return;
             } else if (fileInput[0].size > MAX_FILE_SIZE) {
                 firework.launch("File size must be less than " + MAX_FILE_SIZE_STR + "!", 'danger', 30000);
@@ -121,7 +126,7 @@
             }
             /* Any other file name format is not accepted */
             else { // invalid
-                firework.launch('The filename does not match our expectations!', 'danger', 30000);
+                firework.launch('¡El nombre del archivo no es el esperado!', 'danger', 30000);
                 return;
             }
 
@@ -163,7 +168,7 @@
                         /* keine Reaktion, damit sich das Dokument nicht ändert */
                         upload();
                     } else if (xhttp.status == 0) {
-                        firework.launch('Server closed the connection abruptly!', 'danger', 30000);
+                        firework.launch('¡El servidor cerró la conexión de forma inesperada!', 'danger', 30000);
                     } else {
                         firework.launch('An error occured: ' + xhttp.responseText, 'danger', 30000);
                     }
@@ -209,7 +214,7 @@
                         if (xhttp.responseText.startsWith("reboot")) { // Reboot required
                             console.log("The device will now reboot and install the update!");
                             document.getElementById("status").innerText = "Status: Installing...";
-                            firework.launch('Upload completed and validated. The device will now reboot and install the update', 'success', 5000);
+                            firework.launch('Subida completada y validada. El dispositivo se reiniciará e instalará la actualización', 'success', 5000);
                         
                             /* Tell it to reboot */
                             doRebootAfterUpdate();
@@ -228,7 +233,7 @@
                                 }
 
                                 if (action_runtime > 100) { // We reached 300 seconds but device is not ready yet
-                                    firework.launch("The device seems not do be up again, or maybe we missed it. Try to reload this page or reset the device!", 'danger', 30000);
+                                    firework.launch("Parece que el dispositivo no ha vuelto a arrancar (o no lo hemos detectado). ¡Recarga la página o reinicia el dispositivo!", 'danger', 30000);
                                     clearInterval(updateTimer);
                                 }
                             }, 3000);                           
@@ -236,11 +241,11 @@
                         else // No reboot required
                         {
                             document.getElementById("status").innerText = "Status: Update completed";
-                            firework.launch('Update completed!', 'success', 5000);
+                            firework.launch('¡Actualización completada!', 'success', 5000);
                             document.getElementById("file_selector").disabled = false;
                         }
                     } else if (xhttp.status == 0) {
-                        firework.launch('Server closed the connection abruptly!', 'danger', 30000);
+                        firework.launch('¡El servidor cerró la conexión de forma inesperada!', 'danger', 30000);
                     } else {
                         firework.launch('An error occured: ' + xhttp.responseText, 'danger', 30000);
                     }
@@ -288,7 +293,7 @@
             if (Math.round(percent) == 100) {
                 _("progressBar").value = 0; //will clear progress bar after successful upload
                 _("loaded_n_total").innerHTML = "";
-                _("status").innerHTML = "Status: Upload completed. Validating file...";
+                _("status").innerHTML = "Estado: subida completada. Validando archivo...";
             }
             else {
                 _("status").innerHTML = "Status: " + Math.round(percent) + "% uploaded...";
@@ -304,12 +309,12 @@
                 md5_on_device = JSON.parse(event.target.responseText).md5;
                 validateMd5(md5_on_device, (result) => {
                     if (result == true) {
-                        _("status").innerHTML = "Status: The uploaded file is valid, installing it...";
+                        _("status").innerHTML = "Estado: el archivo es válido, instalando...";
                         extract();
                     }
                     else {
-                        _("status").innerHTML = "Status: The file got corrupted! Please upload it again!";
-                        firework.launch('Upload failed, the file got corrupted! Please upload it again!', 'danger', 30000);
+                        _("status").innerHTML = "Estado: ¡el archivo se ha dañado! Súbelo de nuevo.";
+                        firework.launch('La subida ha fallado: ¡el archivo se ha dañado! Súbelo de nuevo.', 'danger', 30000);
                         document.getElementById("start_OTA_button").disabled = false;
                     }
                 });
@@ -318,22 +323,22 @@
                 // If the firmware is to old, it will return the file sever page instead of the JSON object with the MD5 sum.
                 // In juch case just proceed to keep legacy support.
                 console.log("It seems to be a legacy firmware, installing the update without validation!");
-                _("status").innerHTML = "Status: It seems to be a legacy firmware, installing the update without validation...";
+                _("status").innerHTML = "Estado: parece un firmware antiguo, instalando sin validar...";
                 extract();
             }
         }
 
 
         function errorHandler(event) {
-            _("status").innerHTML = "Status: Upload Failed";
-            firework.launch('Upload failed!', 'danger', 30000);
+            _("status").innerHTML = "Estado: la subida ha fallado";
+            firework.launch('¡La subida ha fallado!', 'danger', 30000);
             document.getElementById("file_selector").disabled = false;
         }
 
 
         function abortHandler(event) {
-            _("status").innerHTML = "Status: Upload Aborted";
-            firework.launch('Upload aborted!', 'danger', 30000);
+            _("status").innerHTML = "Estado: subida cancelada";
+            firework.launch('¡Subida cancelada!', 'danger', 30000);
             document.getElementById("file_selector").disabled = false;
         }
     </script>

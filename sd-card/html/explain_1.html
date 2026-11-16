@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en"> 
+<html lang="es" xml:lang="es"> 
 
 <head>
-<title>AI on the edge</title>
+<title>SLIM</title>
 <meta charset="UTF-8" />
 
 <style>
@@ -11,22 +11,23 @@ h2 {font-size: 1.5em;margin-block-start: 0.3em;}
 h3 {font-size: 1.2em;}
 p {font-size: 1em;}
 </style>
+    <!-- SLIM: tema visual y traduccion de mensajes dinamicos -->
+    <script>window.__slimThemeLoaded=true;try{var p=localStorage.getItem("slim-theme");if(p==="dark"||(!p&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("slim-dark");}catch(e){}</script>
+    <link rel="stylesheet" href="modern.css?v=$COMMIT_HASH">
+    <script type="text/javascript" src="modern.js?v=$COMMIT_HASH"></script>
+    <script type="text/javascript" src="i18n-es.js?v=$COMMIT_HASH"></script>
 </head>
 
 <body style="font-family: arial">
 
-    <h4>Step 1 / 7: Adjust Focus And Verify Flashlight</h4>
-        Firstly you have find a proper mounting position and potentially have to adjust the focus of the camera lens to get a sharp and crisp image. 
-        This <b>live stream with flashlight on</b> could be helpful for this task. More details about adjusting the camera lens can be found here:
-        <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/Reference-Image/#focus target=_blank>Focus Adjustment</a><br>
-        Additionally it should be verfied that the flashlight is not creating any distrubing reflection in the processing relevant areas. 
-        Beside using the built-in internal flash LED it's also possible to attach additional external LEDs to the device to have more possiblities 
-        to get proper light condition. Please read the documentation if you'd like to use extenal LEDs:
-        <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/External-LED/ target=_blank>Installation Of External LEDs</a>
+    <h4>Paso 1 / 7: Ajustar el enfoque y comprobar el flash</h4>
+        Primero tienes que encontrar una buena posición de montaje y quizá ajustar el enfoque de la lente para obtener una imagen nítida. Esta <b>transmisión en vivo con el flash encendido</b> puede ayudarte. Hay más detalles sobre cómo ajustar la lente aquí:
+        <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/Reference-Image/#focus target=_blank>Ajuste del enfoque</a><br>
+        Además, comprueba que el flash no cree reflejos molestos en las zonas relevantes para el procesamiento. Además del LED flash interno, también puedes conectar LEDs externos para tener más posibilidades de conseguir una buena iluminación. Lee la documentación si quieres usar LEDs externos:
+        <a href=https://jomjol.github.io/AI-on-the-edge-device-docs/External-LED/ target=_blank>Instalación de LEDs externos</a>
     <p>
-        NOTE: The flashlight indensity is set to default (50%) for initial verfication in this step and can be modified in next step. After modification
-        you can come back to this step if you'd like to test with adjusted light intensity.<br>
-        The live stream can also be called at any time also after setup mode is completed on regular web interface.
+        NOTA: en este paso la intensidad del flash está en el valor por defecto (50 %) para la comprobación inicial y se puede cambiar en el siguiente paso. Después puedes volver a este paso para probar con la nueva intensidad.<br>
+        La transmisión en vivo también se puede abrir en cualquier momento desde la interfaz web normal, una vez terminado el modo de configuración.
     </p>
 
 </body>

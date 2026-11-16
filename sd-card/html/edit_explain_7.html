@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en"> 
+<html lang="es" xml:lang="es"> 
 <head>
-<title>AI on the edge</title>
+<title>SLIM</title>
 <meta charset="UTF-8" />
 
 <style>
@@ -22,21 +22,25 @@ p {font-size: 1em;}
 <link href="firework.css?v=$COMMIT_HASH" rel="stylesheet">
 <script type="text/javascript" src="jquery-3.6.0.min.js?v=$COMMIT_HASH"></script>  
 <script type="text/javascript" src="firework.js?v=$COMMIT_HASH"></script>
+    <!-- SLIM: tema visual y traduccion de mensajes dinamicos -->
+    <script>window.__slimThemeLoaded=true;try{var p=localStorage.getItem("slim-theme");if(p==="dark"||(!p&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("slim-dark");}catch(e){}</script>
+    <link rel="stylesheet" href="modern.css?v=$COMMIT_HASH">
+    <script type="text/javascript" src="modern.js?v=$COMMIT_HASH"></script>
+    <script type="text/javascript" src="i18n-es.js?v=$COMMIT_HASH"></script>
 </head>
 
 <body style="font-family: arial">
 
-    <h4>Step 7 / 7: Initial setup completed!</h4>
+    <h4>Paso 7 / 7: ¡Configuración inicial completada!</h4>
 
     <p>
-        Congratulations! You have completed the initial setup and you are now ready to restart to the regular operation mode!
+        ¡Enhorabuena! Has completado la configuración inicial y ya puedes reiniciar al modo de funcionamiento normal.
     </p>
     <p>
-        Once you push the button below, the setup mode will be completed and the device will be automatically restart to regular web interface. 
-       If configuration is error free, the device will automatically start with first processing. It will take some time until you get the first reading.
+        Al pulsar el botón de abajo, el modo de configuración termina y el dispositivo se reinicia automáticamente en la interfaz web normal. Si la configuración no tiene errores, el dispositivo empezará automáticamente con el primer procesamiento. La primera lectura tardará un poco.
     </p>
     <p>
-        <button class="button" onclick="reboot()">Complete Setup + Reboot</button>
+        <button class="button" onclick="reboot()">Completar configuración + Reiniciar</button>
     </p>
 
     <script type="text/javascript" src="common.js?v=$COMMIT_HASH"></script> 
@@ -46,10 +50,10 @@ p {font-size: 1em;}
     <script type="text/javascript">
     
     function reboot() {
-        if (confirm("Do you want to complete the setup mode and switch to regular web interface?")) {
+        if (confirm("¿Quieres terminar el modo de configuración y pasar a la interfaz web normal?")) {
             domainname = getDomainname(); 
             if (!loadConfig(domainname)) {
-                firework.launch('Setup mode could not be deactivated! Please try again!', 'danger', 30000);
+                firework.launch('¡No se pudo desactivar el modo de configuración! Inténtalo de nuevo.', 'danger', 30000);
                 return;
             }
 

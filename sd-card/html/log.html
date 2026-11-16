@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en"> 
+<html lang="es" xml:lang="es"> 
     <head>
-        <title>Log Viewer</title>
+    <meta charset="UTF-8">
+        <title>Visor de registros</title>
         
         <style>
             html,
@@ -40,19 +41,24 @@
             }
         </style>
         <script type="text/javascript" src="common.js?v=$COMMIT_HASH"></script> 
-    </head>
+        <!-- SLIM: tema visual y traduccion de mensajes dinamicos -->
+    <script>window.__slimThemeLoaded=true;try{var p=localStorage.getItem("slim-theme");if(p==="dark"||(!p&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("slim-dark");}catch(e){}</script>
+    <link rel="stylesheet" href="modern.css?v=$COMMIT_HASH">
+    <script type="text/javascript" src="modern.js?v=$COMMIT_HASH"></script>
+    <script type="text/javascript" src="i18n-es.js?v=$COMMIT_HASH"></script>
+</head>
     <body>
         <div class="box">
             <div class="row header">
-                <button class="button" onClick="reload();">Reload</button>
-                <button class="button" onClick="window.open(getDomainname() + '/logfileact');">Show Full Log</button>
-                <button class="button" onClick="window.location.href = getDomainname() + '/fileserver/log/message/'">Show Older Log Files</button>
+                <button class="button" onClick="reload();">Recargar</button>
+                <button class="button" onClick="window.open(getDomainname() + '/logfileact');">Ver registro completo</button>
+                <button class="button" onClick="window.location.href = getDomainname() + '/fileserver/log/message/'">Ver registros anteriores</button>
             </div>
             <div class="row content" id="log"><br><br><br><b>Loading logfile, please wait...</b></div>
             <div class="row footer">
-                <button class="button" onClick="reload();">Reload</button>
-                <button class="button" onClick="window.open(getDomainname() + '/logfileact');">Show Full Log</button>
-                <button class="button" onClick="window.location.href = getDomainname() + '/fileserver/log/message/'">Show Older Log Files</button>
+                <button class="button" onClick="reload();">Recargar</button>
+                <button class="button" onClick="window.open(getDomainname() + '/logfileact');">Ver registro completo</button>
+                <button class="button" onClick="window.location.href = getDomainname() + '/fileserver/log/message/'">Ver registros anteriores</button>
             </div>
           </div>
     </body>

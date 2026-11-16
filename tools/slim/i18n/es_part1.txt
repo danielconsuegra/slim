@@ -1,0 +1,397 @@
+0|Copia de seguridad / Restaurar configuración
+1|Copia de seguridad de la configuración
+2|Con la siguiente acción, la carpeta
+3|config
+4|de la tarjeta SD se comprime en un ZIP y se ofrece para descargar.
+5|Crear copia de seguridad
+6|Restaurar configuración
+7|Usa el
+8|Servidor de archivos
+9|para subir archivos individuales.
+10|Visor de datos
+11|Datos más recientes de hoy
+12|Actualizar
+13|Ver archivo completo
+14|Ver archivos de datos
+15|Ver gráfica
+16|Cargando archivo de datos, espera por favor...
+17|Exportar datos (CSV)
+18|Exportar datos (CSV)
+19|datos
+20|Exportar datos
+21|Marcas de alineación
+22|Marcas de alineación
+23|HAZ CLIC AQUÍ
+24|para ver la descripción de uso. Más información en la documentación:
+25|Alineación
+26|Se necesitan dos marcas de alineación con contorno claro y buen contraste para identificar "puntos fijos" únicos en la imagen. La zona de la marca no debe formar parte de la zona variable que evalúan las ROIs. Más información en la documentación:
+27|Selecciona la zona de una marca de alineación arrastrando con el ratón o escribiendo manualmente las coordenadas y tamaños en los campos bajo la imagen. Cuando tengas una primera zona adecuada, pulsa el botón
+28|"Actualizar marca"
+29|. Cambia a la segunda marca con
+30|"Marca"
+31|y repite el procedimiento.
+32|Cuando hayas definido ambas marcas, no olvides guardar con el botón
+33|"Guardar nueva marca"
+34|.
+35|NOTA:
+36|No hace falta reiniciar después de cada guardado o paso. Basta con reiniciar al terminar todos los pasos de configuración (imagen de referencia, alineación, ROIs) para activar la nueva configuración.
+37|Marca:
+38|Marca 1
+39|Marca 2
+40|Archivo:
+41|dx:
+42|Actualizar marca
+43|dy:
+44|Zona de imagen seleccionada:
+45|Marca resultante:
+46|Mejorar contraste de imagen
+47|Imagen de referencia:
+48|Guardar nueva marca
+49|ROI analógicas
+50|Configuración de ROIs
+52|nterest (ROI): las regiones de interés para contadores de aguja analógicos se definen en esta página. Si no necesitas procesar contadores de aguja, desactiva su procesamiento desmarcando
+53|"Procesamiento de ROI analógicas"
+54|Por defecto hay una secuencia numérica predefinida y ya seleccionada en el desplegable (una secuencia numérica contiene de 1 a x ROIs de dígitos + de 1 a x ROIs analógicas que se procesan juntas)
+55|"Secuencia numérica"
+56|. Si necesitas más de una secuencia numérica, puedes añadirlas con los botones junto al desplegable. Cada secuencia numérica se procesa por separado.
+57|Arrastrando con el ratón o escribiendo manualmente los parámetros en los campos, las ROIs analógicas se colocan sobre las agujas de los contadores en la imagen de referencia. Para definir bien las ROIs, consulta la documentación:
+58|. Es muy importante ser realmente preciso para obtener un procesamiento fiable. Con el desplegable
+59|"ROI"
+60|puedes cambiar entre las distintas ROIs de la secuencia numérica seleccionada. Para crear nuevas ROIs usa
+61|"Nueva ROI"
+62|El orden de las ROIs define su posición (y por tanto el factor de multiplicación) dentro de la secuencia de lectura. La posición en la secuencia numérica se cambia con los botones
+63|"Bajar ROI"
+64|y
+65|"Subir ROI"
+66|. El factor de multiplicación mostrado bajo el desplegable de ROI corresponde solo a la posición/orden en la secuencia numérica, y el factor de su derecha está corregido además por el desplazamiento decimal (configuración, parámetro experto, por defecto: 0).
+67|Cuando termines de definir las ROIs, no olvides guardar con el botón
+68|"Guardar configuración"
+69|Procesamiento de ROI analógicas
+70|Secuencia numérica:
+71|Nueva secuencia
+72|Renombrar secuencia
+73|Borrar secuencia
+74|ROI:
+75|Nueva ROI
+76|Renombrar ROI
+77|Borrar ROI
+78|Multiplicador:
+79|(solo según el orden)
+80|(orden + desplazamiento decimal:
+81|Subir ROI
+82|Bajar ROI
+83|Rotación antihoraria (CCW)
+84|Los siguientes ajustes solo sirven para facilitar la configuración y
+85|no
+86|se guardan en el dispositivo:
+87|Mostrar todas las ROIs
+88|Bloquear proporción
+89|Sincronizar y, Δx y Δy entre ROIs
+90|Dibujar desde el centro
+91|Guardar configuración
+92|Editar configuración
+93|Configuración - Editor de "Config.ini"
+94|ROI de dígitos
+95|nterest (ROI): las regiones de interés para los dígitos se definen en esta página. Si no necesitas procesar dígitos, desactiva su procesamiento desmarcando
+96|"Procesamiento de ROI de dígitos"
+97|"Secuencia numérica"
+98|Arrastrando con el ratón o escribiendo manualmente los parámetros en los campos, las ROIs de dígitos se colocan sobre los dígitos en la imagen de referencia. Para definir bien las ROIs, consulta la documentación:
+99|Procesamiento de ROI de dígitos
+100|Mantener una separación de
+101|entre todas las ROIs
+103|Bienvenido a la configuración de SLIM
+104|Es la primera vez que inicias el dispositivo tras la instalación inicial. Se te ha dirigido automáticamente al
+105|procedimiento de configuración inicial
+106|. Con este procedimiento se realiza la configuración básica del dispositivo en siete pasos. Al completarlos, el modo de configuración termina y el dispositivo se reinicia automáticamente en la interfaz web normal.
+107|Nota: todos los ajustes de la configuración inicial también están disponibles en la interfaz web normal. Consulta la documentación:
+108|Procedimiento de configuración inicial
+109|para más explicaciones.
+110|Puedes avanzar y retroceder durante la configuración con los botones "Siguiente paso" y "Paso anterior".
+111|Con el botón "Cancelar configuración" se omite la configuración y se muestra la pantalla de cancelación.
+112|Para reiniciar el proceso de configuración, pulsa el botón "Reiniciar configuración".
+113|Este es un resumen de los siete pasos:
+114|Ajustar el
+115|enfoque de la lente
+116|y comprobar los
+117|reflejos del flash
+118|Asegúrate de que la lente de la cámara esté bien enfocada al objeto y de que el flash no produzca reflejos que distorsionen la imagen.
+119|Crear la
+120|imagen de referencia
+121|Es la base para referenciar posiciones e identificar los dígitos y contadores.
+122|Definir dos
+123|marcas de alineación únicas
+124|Se usan para alinear la orientación de las fotos de la cámara antes de procesarlas
+125|Definir las
+126|ROIs
+127|de los
+128|dígitos
+129|Se usarán para digitalizar la parte de dígitos de tu contador.
+130|NOTA: si tu contador no tiene dígitos, puedes saltar este paso.
+131|contadores analógicos
+132|Se usarán para digitalizar la parte analógica de tu contador.
+133|NOTA: si tu contador no tiene contadores analógicos, puedes saltar este paso.
+134|Configuración adicional:
+135|Lista de todos los parámetros
+136|Aquí puedes hacer más ajustes del dispositivo.
+137|NOTA: esto también se puede hacer después desde la interfaz web normal, p. ej. para configurar un servicio de publicación como MQTT
+138|Finalizar configuración:
+139|Terminar/cancelar el modo de configuración
+140|En el paso final hay que terminar correctamente el modo de configuración pulsando el botón de esa página.
+141|NOTA: esto es importante; de lo contrario, el modo de configuración vuelve a aparecer tras reiniciar.
+142|Ten paciencia al cambiar de paso. ¡El dispositivo tarda un poco en cargar toda la información necesaria!
+143|Si necesitas ayuda, consulta la
+144|documentación
+145|o las páginas de
+146|discusión
+147|.
+148|¡Disfruta SLIM!
+149|Paso 7 / 7: ¡Configuración inicial completada!
+150|¡Enhorabuena! Has completado la configuración inicial y ya puedes reiniciar al modo de funcionamiento normal.
+151|Al pulsar el botón de abajo, el modo de configuración termina y el dispositivo se reinicia automáticamente en la interfaz web normal. Si la configuración no tiene errores, el dispositivo empezará automáticamente con el primer procesamiento. La primera lectura tardará un poco.
+152|Completar configuración + Reiniciar
+153|¡Configuración inicial cancelada!
+154|Has
+155|cancelado
+156|la configuración inicial.
+157|Al pulsar el botón de abajo, el modo de configuración termina y el dispositivo se reinicia automáticamente en la interfaz web normal. Ten en cuenta que la configuración del dispositivo no está adaptada, o solo parcialmente, a tus necesidades.
+158|La configuración se puede seguir ajustando / completando desde la interfaz web normal.
+159|Cancelar configuración + Reiniciar
+160|Imagen de referencia y ajustes de cámara
+161|Imagen de referencia
+162|La imagen de referencia es la imagen base sobre la que se definen las marcas de alineación, las ROIs de dígitos y las ROIs analógicas.
+163|Al principio se muestra la imagen de referencia guardada. Si empiezas desde cero, se muestra una imagen por defecto de ejemplo. Usa el botón
+164|"Crear nueva referencia / Cambiar ajustes de cámara"
+165|para crear tu propia imagen de referencia. Al pulsarlo, la cámara toma una foto con los parámetros configurados. Esa será tu nueva imagen de referencia. Con el botón
+166|"Actualizar imagen de referencia"
+167|puedes volver a actualizar la imagen.
+168|Para un procesamiento fiable es obligatorio que las ROIs de dígitos estén alineadas en horizontal. Con los campos "Ángulo de rotación" y "(Ajuste fino)" la imagen se puede girar en ambos sentidos. El ángulo resultante se usa para pre-rotar la imagen antes del algoritmo de alineación, que solo compensa desviaciones pequeñas (ver el siguiente paso, Marcas de alineación). Más información en la documentación:
+169|Cuando tengas lista tu imagen de referencia, no olvides guardar con el botón
+170|"Guardar nueva imagen de referencia y ajustes de cámara"
+171|Restablecer y mostrar la referencia y ajustes actuales
+172|Crear nueva referencia / Cambiar ajustes de cámara
+173|Mostrar parámetros avanzados
+175|activado (true)
+176|desactivado (false)
+177|Parámetro
+179|Zoom digital
+180|Activa/desactiva el zoom digital.
+181|Valor por defecto:
+183|Consulta
+184|aquí
+185|la hoja de datos de la cámara ov2640.
+186|la hoja de datos de la cámara ov5640.
+187|Advertencia
+188|Este es un
+189|parámetro avanzado
+190|. ¡Cámbialo solo si entiendes lo que hace!
+191|¡Después de cambiar este parámetro debes actualizar la imagen de referencia y las marcas de alineación!
+192|Nota
+193|Siempre se hace zoom al centro de la imagen si
+196|son cero.
+197|¡Este parámetro también se puede ajustar en la página de configuración de la imagen de referencia!
+198|Desplazamiento zoom X:
+199|Desplazamiento X del zoom digital
+200|rango en OV2640 (
+201|rango en OV3660 (
+202|rango en OV5640 (
+203|Desplazamiento X de la imagen respecto al centro.
+204|Los valores positivos mueven la imagen a la derecha; los negativos, a la izquierda.
+205|El desplazamiento máximo depende del valor de
+207|Tamaño del zoom:
+208|Tamaño del zoom digital
+209|Factor/nivel del zoom digital: cuanto mayor el valor, más se acerca.
+210|Desplazamiento zoom Y:
+211|Desplazamiento Y del zoom digital
+212|Desplazamiento Y de la imagen respecto al centro.
+213|Los valores positivos mueven la imagen hacia arriba; los negativos, hacia abajo.
+214|Efecto especial:
+215|sin efecto
+216|negativo
+217|escala de grises
+218|rojo
+219|verde
+220|azul
+221|retro
+223|Efecto especial de imagen
+224|Opciones disponibles:
+226|Control automático de exposición 2
+228|Control automático de exposición 2
+229|Si es
+231|, se activa el "modo nocturno" del sensor, ampliando el rango del control automático de ganancia.
+232|, el "modo nocturno" del sensor está desactivado.
+233|Esto puede resolver algunos problemas de sobreexposición y subexposición.
+234|Imagen en espejo
+236|Imagen en espejo
+237|, la imagen de la cámara se refleja de izquierda a derecha.
+238|Intensidad del LED:
+240|Intensidad del LED flash: (
+241|Voltear imagen
+243|Voltear imagen
+244|, la imagen de la cámara se voltea de arriba abajo.
+245|¡En algunas cámaras OV5640 la imagen se vuelve rojiza al usar Vflip junto con el zoom!
+246|Brillo:
+248|Brillo de la imagen
+249|Rango (
+250|Ángulo de rotación:
+251|grados
+253|Unidad: grados
+254|Rotación inicial de la imagen antes de la alineación, en grados (
+255|Contraste:
+257|Contraste de la imagen
+258|(Ajuste fino):
+259|Saturación:
+261|Saturación de la imagen
+262|Los valores positivos aumentan la saturación (colores más vivos); los negativos la reducen (colores más apagados).
+263|Control automático de exposición
+265|Control automático de exposición
+266|, la cámara intenta controlar la exposición automáticamente.
+267|, se usa en su lugar el ajuste
+269|.
+270|Nivel de exposición automática:
+272|Nivel de exposición automática
+273|rango en OV3660 y OV5640 (
+274|Compensación de la exposición automática: los valores más bajos dan una imagen más oscura.
+275|Nitidez automática
+277|Nitidez automática
+278|, la cámara intenta ajustar la nitidez automáticamente.
+280|¡La OV2640 no admite oficialmente la nitidez automática; es un parámetro experimental!
+281|Nitidez:
+282|Nitidez de la imagen
+283|¡La OV2640 no admite oficialmente la nitidez; es un parámetro experimental!
+284|Los valores positivos aumentan la nitidez (bordes más definidos); los negativos la reducen (bordes más suaves).
+285|Se usa cuando
+286|está desactivado.
+287|Actualizar imagen de referencia
+288|Guardar nueva imagen de referencia y ajustes de cámara
+289|Paso 1 / 7: Ajustar el enfoque y comprobar el flash
+290|Primero tienes que encontrar una buena posición de montaje y quizá ajustar el enfoque de la lente para obtener una imagen nítida. Esta
+291|transmisión en vivo con el flash encendido
+292|puede ayudarte. Hay más detalles sobre cómo ajustar la lente aquí:
+293|Ajuste del enfoque
+294|Además, comprueba que el flash no cree reflejos molestos en las zonas relevantes para el procesamiento. Además del LED flash interno, también puedes conectar LEDs externos para tener más posibilidades de conseguir una buena iluminación. Lee la documentación si quieres usar LEDs externos:
+295|Instalación de LEDs externos
+296|NOTA: en este paso la intensidad del flash está en el valor por defecto (50 %) para la comprobación inicial y se puede cambiar en el siguiente paso. Después puedes volver a este paso para probar con la nueva intensidad.
+297|La transmisión en vivo también se puede abrir en cualquier momento desde la interfaz web normal, una vez terminado el modo de configuración.
+298|Paso 2 / 7: Crear una imagen de referencia
+299|Paso 3 / 7: Definir las marcas de alineación
+300|Paso 4 / 7: Configurar las ROIs de los dígitos
+301|Paso 5 / 7: Configurar las ROIs de los contadores analógicos
+302|Paso 6 / 7: Página de configuración: lista de todos los parámetros
+303|NOTA: todos los parámetros se pueden editar después en la interfaz web normal. ¡No te preocupes si todavía no entiendes los parámetros!
+304|Gráfica de datos
+305|Cargando...
+306|Secuencia numérica:
+307|Día:
+308|Mostrar valores relativos
+309|Ver visor de datos
+310|SLIM
+311|Sistema de Lectura Inteligente de Medidores
+312|Resumen
+313|Ajustes
+314|Fijar "valor previo"
+315|Referencias
+316|Regiones de interés (ROIs)
+317|Configuración
+318|Datos
+319|Reconocimiento
+320|Transmisión en vivo
+321|En vivo (luz apagada)
+322|En vivo (luz encendida)
+323|Tabla de datos
+324|Archivos de datos
+325|Exportar datos
+326|Sistema
+327|Copia de seguridad/Restaurar
+328|Actualización OTA
+329|Visor de registros
+330|Reiniciar
+331|Información
+332|Ayuda
+333|Control manual
+334|Iniciar ronda
+335|Reenviar descubrimiento de Home Assistant
+337|Cargando versión...
+338|Información de ejecución
+339|Hora de inicio:
+340|Tiempo encendido:
+341|Información de compilación
+342|Versión del firmware:
+343|Fecha de compilación del firmware:
+344|Versión de la interfaz web:
+345|Información del dispositivo
+346|Núcleos del chip:
+347|Revisión del chip:
+348|Características del chip:
+349|Información de red
+350|Nombre del host:
+351|Dirección IP:
+352|SSID de la WLAN:
+353|Información de la tarjeta SD
+354|Fabricante de la tarjeta SD:
+355|Nombre de la tarjeta SD:
+356|Tamaño de la tarjeta SD:
+357|Tamaño de sector de la SD:
+358|Tamaño de la partición:
+359|Espacio libre en la partición:
+360|Tamaño de asignación de la partición:
+361|Información de memoria
+362|Total libre (int. + ext.):
+363|RAM ext. - libre:
+364|RAM ext. - mayor bloque libre:
+365|RAM ext. - mínimo libre:
+366|RAM int. - libre:
+367|RAM int. - mayor bloque libre:
+368|RAM int. - mínimo libre:
+369|Derechos de autor
+370|Copyright © 2020 - 2024 de
+372|y otros.
+373|Recargar
+374|Ver registro completo
+375|Ver registros anteriores
+376|Cargando el registro, espera por favor...
+377|Consulta la
+378|página de versiones
+379|para ver si hay alguna actualización disponible.
+380|También puedes recibir avisos automáticos de nuevas versiones, consulta
+381|Avisos de versiones
+382|Actualizar
+383|En la
+384|, elige el archivo
+386|.
+387|También se admiten estos tipos de archivo:
+389|→ Se descomprime en la tarjeta SD (carpeta raíz)
+391|→ Se instala en la memoria de programa del ESP32
+393|→ Se copia en tu
+395|¡No recargues esta página ni cambies de página mientras se instala la actualización!
+396|Subir e instalar
+397|Estado: en espera
+398|Valor
+399|Valor previo
+400|Valor bruto
+401|Estado del valor
+402|Estado del proceso
+403|Información del sistema
+404|Fijar valor previo
+405|"Valor previo"
+406|Fija el "valor previo" para las comprobaciones de consistencia y para sustituir NaN
+407|"Valor previo" es un nombre algo engañoso: normalmente es el último valor válido, pero no siempre el de la ronda anterior. El resultado de una nueva ronda, si es válido, pasa a ser el nuevo "valor previo". Si el resultado no sirve, el "valor previo" no se actualiza. Si está activado en la configuración, el "valor previo" se usa en la ronda siguiente para comprobar cambios negativos, cambios demasiado altos (MaxRateValue / MaxRateType) y para la opción "Check Digit Increase Consistency" (parámetro de configuración, solo para modelos dig-class11).
+408|El campo para el nuevo "valor previo" viene relleno con el "valor bruto" actual porque es el caso más habitual. Aun así, puedes fijar cualquier otro valor positivo como nuevo "valor previo".
+409|"Valor previo" actual:
+410|Nuevo "valor previo":
+411|Actualizar valor
+412|NOTA: el "valor bruto" actual viene relleno como
+413|el nuevo "valor previo" sugerido
+414|"Valor previo" actualizado a:
+415|¿Seguro que quieres reiniciar ahora?
+416|SLIM - Configuración inicial
+417|Reiniciar configuración
+418|Paso anterior
+419|Siguiente paso
+420|Cancelar configuración
+421|Progreso:
+1119|Zonas horarias
+1120|Escribe una región
+1121|Busca tu región...
+1122|Región
+1123|Código
+1129|Fuente:

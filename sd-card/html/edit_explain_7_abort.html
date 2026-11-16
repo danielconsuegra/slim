@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en"> 
+<html lang="es" xml:lang="es"> 
 <head>
-<title>AI on the edge</title>
+<title>SLIM</title>
 <meta charset="UTF-8" />
 
 <style>
@@ -22,20 +22,24 @@ p {font-size: 1em;}
 <link href="firework.css?v=$COMMIT_HASH" rel="stylesheet">
 <script type="text/javascript" src="jquery-3.6.0.min.js?v=$COMMIT_HASH"></script>  
 <script type="text/javascript" src="firework.js?v=$COMMIT_HASH"></script>
+    <!-- SLIM: tema visual y traduccion de mensajes dinamicos -->
+    <script>window.__slimThemeLoaded=true;try{var p=localStorage.getItem("slim-theme");if(p==="dark"||(!p&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("slim-dark");}catch(e){}</script>
+    <link rel="stylesheet" href="modern.css?v=$COMMIT_HASH">
+    <script type="text/javascript" src="modern.js?v=$COMMIT_HASH"></script>
+    <script type="text/javascript" src="i18n-es.js?v=$COMMIT_HASH"></script>
 </head>
 
 <body style="font-family: arial">
 
-    <h4>Initial setup aborted!</h4>
+    <h4>¡Configuración inicial cancelada!</h4>
 
-    <p>You have <b>aborted</b> the initial setup!</p>
-    <p>Once you push the button below, the setup mode will be ended and the device will be automatically restart to regular web interface. 
-       Please be aware: The configuration of the device is not or only parly adapted to your needs!<br>
-       Configuration can still be adapted / completed using regular web interface.
+    <p>Has <b>cancelado</b> la configuración inicial.</p>
+    <p>Al pulsar el botón de abajo, el modo de configuración termina y el dispositivo se reinicia automáticamente en la interfaz web normal. Ten en cuenta que la configuración del dispositivo no está adaptada, o solo parcialmente, a tus necesidades.<br>
+       La configuración se puede seguir ajustando / completando desde la interfaz web normal.
     </p>
 
     <p>
-        <button class="button" onclick="reboot()">Abort Setup + Reboot</button>
+        <button class="button" onclick="reboot()">Cancelar configuración + Reiniciar</button>
     </p>
 
     <script type="text/javascript" src="common.js?v=$COMMIT_HASH"></script> 
@@ -48,7 +52,7 @@ p {font-size: 1em;}
         if (confirm("Do you want to abort the setup mode and switch to regular web interface?")) {
             domainname = getDomainname(); 
             if (!loadConfig(domainname)) {
-                firework.launch('Setup mode could not be deactivated! Please try again!', 'danger', 30000);
+                firework.launch('¡No se pudo desactivar el modo de configuración! Inténtalo de nuevo.', 'danger', 30000);
                 return;
             } 
             ParseConfig();	
