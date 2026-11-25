@@ -29,14 +29,19 @@ MAP = {
     "mqtt-api": _M + "#mqtt",
     "integration-home-assistant": _M + "#mqtt",
 }
-# Hojas de datos de las camaras: documentos del fabricante que la doc de SLIM
-# no aloja; se mantienen en su ubicacion actual.
+# Hojas de datos de las camaras (documentos del fabricante, no estan en la doc
+# de SLIM). Las que tienen direccion nueva se cambian; el resto se mantiene.
+DATASHEETS = {
+    "datasheets/ov5640_datasheet.pdf": "https://www.alldatasheet.com/datasheet-pdf/view/587044/OMNIVISION/OV5640.html",
+}
 KEEP_PREFIX = ("datasheets/",)
 
 
 def new_url(path):
     """path = parte despues de la raiz de la doc original (p.ej. 'Alignment/')."""
     p = path.strip()
+    if p.lower() in DATASHEETS:
+        return DATASHEETS[p.lower()]
     if p.startswith(KEEP_PREFIX):
         return _OLD + "/" + p
     key = p.lower().replace("/#", "#").rstrip("/")
