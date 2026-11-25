@@ -28,6 +28,7 @@ import markdown
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import translate  # noqa: E402
+import docs_urls  # noqa: E402
 
 SRC = os.path.join(REPO, "sd-card", "html")
 OUT_ROOT = os.path.join(REPO, "build-web")
@@ -53,7 +54,8 @@ def tooltip_html(md_file):
     text = open(md_file, encoding="utf-8").read().replace("# ", "### ")
     h = markdown.markdown(text, extensions=["admonition"])
     h = h.replace("a href", "a target=_blank href")
-    h = h.replace('href="../', 'href="https://jomjol.github.io/AI-on-the-edge-device-docs/')
+    h = docs_urls.replace_relative(h)   # enlaces a la documentacion -> GitBook de SLIM
+    h = docs_urls.replace_old(h)
     h = h.replace("<h3>", '<h3 style="margin: 0">')
     h = h.replace("../img/", "/")
     return TOOLTIP_PREFIX + h + TOOLTIP_SUFFIX
