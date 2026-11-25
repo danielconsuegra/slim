@@ -87,15 +87,117 @@
       frame.parentNode.insertBefore(foot, frame.nextSibling);
     }
 
-    // Marca la seccion de menu activa (Overview / Settings / Data / System)
-    var topItems = menu.querySelectorAll(":scope > ul > li");
+    buildSidebar(menu, frame);
+  }
+
+  /* --- Menu lateral izquierdo ---
+     Usa el MISMO menu original: los enlaces y sus onclick no se tocan. Solo se
+     anaden iconos, titulos de grupo, la marca SLIM arriba y el estado abajo. */
+  var ICONS = [
+    [/overview\.html/, "M4 4h6v8H4zM14 4h6v5h-6zM14 13h6v7h-6zM4 16h6v4H4z"],
+    [/prevalue_set/, "M12 8v4l2 2M3.05 11a9 9 0 1 1 .5 4M3 4v5h5"],
+    [/edit_reference/, "M4 5h16v14H4zM4 15l4-4 5 5M14 14l2-2 4 4M15 8h.01"],
+    [/edit_alignment/, "M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 8a4 4 0 1 0 0 8a4 4 0 1 0 0-8M12 12h.01"],
+    [/edit_digits/, "M4 6h2v12M10 8a2 2 0 1 1 4 0c0 2-4 4-4 6h4M17 6h3l-2 4a2 2 0 1 1-2 3"],
+    [/edit_analog/, "M12 13l3-3M5.6 18a8 8 0 1 1 12.8 0"],
+    [/edit_config/, "M6 4v16M12 4v16M18 4v16M4 9h4M10 14h4M16 7h4"],
+    [/value\?full/, "M4 8V5h3M17 5h3v3M20 16v3h-3M7 19H4v-3M7 12h10"],
+    [/livestream/, "M4 7h11v10H4zM15 10l5-3v10l-5-3"],
+    [/graph\.html/, "M4 19h16M5 15l4-5 4 3 6-7"],
+    [/data\.html/, "M4 5h16v14H4zM4 10h16M10 5v14"],
+    [/log\/data/, "M4 6h5l2 2h9v10H4z"],
+    [/data_export/, "M12 4v11M8 11l4 4 4-4M5 20h14"],
+    [/backup/, "M7 18a4 4 0 0 1 0-8a5 5 0 0 1 9.6-1.5A4 4 0 0 1 17 18zM12 11v5M10 13l2-2 2 2"],
+    [/ota_page/, "M12 15V5M8 9l4-4 4 4M5 15v4h14v-4"],
+    [/log\.html/, "M6 3h9l4 4v14H6zM9 12h6M9 16h6"],
+    [/fileserver\/'/, "M4 5h16v6H4zM4 13h16v6H4zM8 8h.01M8 16h.01"],
+    [/reboot/, "M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"],
+    [/info\.html/, "M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v5M12 8h.01"],
+    [/flow_start/, "M7 4l12 8-12 8z"],
+    [/HA_send/, "M4 11l8-7 8 7v9H4z"],
+    [/gitbook|help/i, "M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17h.01"]
+  ];
+  function icon(d) {
+    return '<svg class="slim-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="' + d + '"/></svg>';
+  }
+  function buildSidebar(menu, frame) {
+    var root = document.documentElement;
+    root.classList.add("slim-sidebar");
+
+    // Iconos y titulos de grupo (sin cambiar onclick ni href)
+    Array.prototype.forEach.call(menu.querySelectorAll("a"), function (a) {
+      var act = (a.getAttribute("onclick") || "") + " " + (a.getAttribute("href") || "");
+      if (!a.getAttribute("onclick") && !/^https?:/.test(a.getAttribute("href") || "")) {
+        var depth = 0;
+        for (var p = a.parentNode; p && p !== menu; p = p.parentNode) { if (p.tagName === "UL") depth++; }
+        a.classList.add(depth <= 1 ? "slim-group" : "slim-subgroup");
+        a.setAttribute("tabindex", "-1");
+        return;
+      }
+      for (var i = 0; i < ICONS.length; i++) {
+        if (ICONS[i][0].test(act)) { a.insertAdjacentHTML("afterbegin", icon(ICONS[i][1])); break; }
+      }
+    });
+
+    // Marca SLIM arriba
+    var brand = document.createElement("div");
+    brand.className = "slim-side-brand";
+    brand.innerHTML = '<img src="slim-logo.png" alt=""><div><b>SLIM</b><span>Sistema de Lectura Inteligente de Medidores</span></div>';
+    menu.insertBefore(brand, menu.firstChild);
+
+    // Estado de conexion abajo (+ boton de tema claro/oscuro)
+    var st = document.createElement("div");
+    st.className = "slim-side-status";
+    st.innerHTML = '<span class="dot"></span><span class="txt">Conectando...</span>';
+    menu.appendChild(st);
+    var tg = document.getElementById("slim-theme-toggle");
+    if (tg) st.appendChild(tg);
+    function quality(r) { return r >= -55 ? "excelente" : r >= -67 ? "buena" : r >= -78 ? "regular" : "débil"; }
+    function poll() {
+      fetch("/rssi", { cache: "no-store" }).then(function (r) { return r.ok ? r.text() : Promise.reject(); }).then(function (t) {
+        var v = parseInt(t, 10);
+        st.querySelector(".dot").className = "dot on";
+        st.querySelector(".txt").textContent = isNaN(v) ? "En línea" : "En línea · WiFi " + quality(v) + " (" + v + " dBm)";
+      }).catch(function () {
+        st.querySelector(".dot").className = "dot off";
+        st.querySelector(".txt").textContent = "Sin conexión con el dispositivo";
+      });
+    }
+    poll();
+    setInterval(poll, 60000);
+
+    // Opcion activa (resaltado) y cierre del menu en movil al elegir
+    function mark(link) {
+      Array.prototype.forEach.call(menu.querySelectorAll("a.slim-current"), function (x) { x.classList.remove("slim-current"); });
+      if (link) link.classList.add("slim-current");
+    }
     menu.addEventListener("click", function (ev) {
       var link = ev.target.closest ? ev.target.closest("a") : null;
       if (!link || !link.getAttribute("onclick")) return;
-      for (var i = 0; i < topItems.length; i++) {
-        topItems[i].classList.toggle("slim-active", topItems[i].contains(link));
-      }
+      if (/loadPage/.test(link.getAttribute("onclick"))) mark(link);
+      root.classList.remove("slim-menu-open");
     });
+    mark(menu.querySelector('a[onclick*="overview.html"]'));
+    frame.addEventListener("load", function () {
+      try {
+        var page = (frame.contentWindow.location.pathname.split("/").pop() || "");
+        if (!page) return;
+        var hit = menu.querySelector('a[onclick*="' + page + '"]');
+        if (hit) mark(hit);
+      } catch (e) {}
+    });
+
+    // Boton de menu para pantallas pequenas
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.id = "slim-menu-btn";
+    btn.innerHTML = "&#9776; Menú";
+    btn.addEventListener("click", function () { root.classList.toggle("slim-menu-open"); });
+    var back = document.createElement("div");
+    back.id = "slim-menu-backdrop";
+    back.addEventListener("click", function () { root.classList.remove("slim-menu-open"); });
+    document.body.appendChild(btn);
+    document.body.appendChild(back);
   }
 
   /* --- Overview: destello cuando cambia un valor --- */
