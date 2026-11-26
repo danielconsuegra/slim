@@ -134,6 +134,12 @@
           a.classList.add("slim-group");
           a.setAttribute("role", "button");
           a.setAttribute("tabindex", "0");
+          var gt = (a.textContent || "").trim();
+          var gi = /Ajustes|Settings/i.test(gt) ? "M10.3 4.3c.4-1.7 2.9-1.7 3.4 0a1.7 1.7 0 0 0 2.6 1.1c1.5-.9 3.3.8 2.4 2.4a1.7 1.7 0 0 0 1 2.5c1.8.4 1.8 2.9 0 3.4a1.7 1.7 0 0 0-1 2.6c.9 1.5-.9 3.3-2.4 2.4a1.7 1.7 0 0 0-2.6 1c-.4 1.8-2.9 1.8-3.4 0a1.7 1.7 0 0 0-2.5-1c-1.6.9-3.3-.9-2.4-2.4a1.7 1.7 0 0 0-1.1-2.6c-1.7-.4-1.7-2.9 0-3.4a1.7 1.7 0 0 0 1.1-2.5c-.9-1.6.8-3.3 2.4-2.4a1.7 1.7 0 0 0 2.5-1.1zM12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6"
+            : /Datos|Data/i.test(gt) ? "M12 3c4.4 0 8 1.3 8 3s-3.6 3-8 3s-8-1.3-8-3s3.6-3 8-3M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"
+            : /Sistema|System/i.test(gt) ? "M5 5h14v14H5zM9 9h6v6H9zM3 10h2M3 14h2M19 10h2M19 14h2M10 3v2M14 3v2M10 19v2M14 19v2"
+            : "M7 4l12 8-12 8z";
+          a.insertAdjacentHTML("afterbegin", icon(gi));
           a.insertAdjacentHTML("beforeend", '<svg class="slim-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>');
         } else {
           a.classList.add("slim-subgroup");
@@ -155,7 +161,7 @@
     // Estado de conexion abajo (+ boton de tema claro/oscuro)
     var st = document.createElement("div");
     st.className = "slim-side-status";
-    st.innerHTML = '<span class="dot"></span><span class="txt">Conectando...</span>';
+    st.innerHTML = '<span class="dot"></span><span class="txt"><b>Conectando...</b><small></small></span>';
     menu.appendChild(st);
     var tg = document.getElementById("slim-theme-toggle");
     if (tg) st.appendChild(tg);
@@ -164,10 +170,12 @@
       fetch("/rssi", { cache: "no-store" }).then(function (r) { return r.ok ? r.text() : Promise.reject(); }).then(function (t) {
         var v = parseInt(t, 10);
         st.querySelector(".dot").className = "dot on";
-        st.querySelector(".txt").textContent = isNaN(v) ? "En línea" : "En línea · WiFi " + quality(v) + " (" + v + " dBm)";
+        st.querySelector(".txt b").textContent = "En línea";
+        st.querySelector(".txt small").textContent = isNaN(v) ? "" : "WiFi " + quality(v) + " · " + v + " dBm";
       }).catch(function () {
         st.querySelector(".dot").className = "dot off";
-        st.querySelector(".txt").textContent = "Sin conexión con el dispositivo";
+        st.querySelector(".txt b").textContent = "Sin conexión";
+        st.querySelector(".txt small").textContent = "No responde el dispositivo";
       });
     }
     poll();
@@ -294,7 +302,11 @@
     document.documentElement.classList.toggle("slim-dark", isDark());
     var b = document.getElementById("slim-theme-toggle");
     if (b) {
-      b.textContent = isDark() ? "☀️" : "🌙";
+      // Icono vectorial (sol / luna) para que quede centrado igual en todos los sistemas
+      b.innerHTML = isDark()
+        ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 1 0 0 8a4 4 0 1 0 0-8M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>'
+        : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>';
+      b.setAttribute("aria-label", isDark() ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
       b.title = isDark() ? "Cambiar a modo claro" : "Cambiar a modo oscuro";
     }
     // Aplicar tambien a los iframes (mismo origen) al instante
