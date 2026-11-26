@@ -1093,30 +1093,45 @@ html.slim-sidebar .menu ul li ul li:hover ul {
 html.slim-sidebar .menu li { display: block !important; float: none !important; position: static !important; width: auto !important; margin: 0 !important; background: transparent !important; }
 html.slim-sidebar .menu li#ManualControl[style*="none"] { display: none !important; }
 html.slim-sidebar .menu li#HASendDiscovery[style*="none"] { display: none !important; }
-html.slim-sidebar .menu li a,
-html.slim-sidebar .menu li:hover li a,
-html.slim-sidebar .menu li ul a,
-html.slim-sidebar .menu ul li ul li:hover ul li a {
-  display: flex !important; align-items: center; gap: 10px; height: auto !important; min-height: 0 !important;
-  margin: 1px 0 !important; padding: 7px 10px !important; border-radius: 8px !important;
-  color: #c9d6e6 !important; background: transparent !important; font-size: 14px !important; font-weight: 400 !important;
-  line-height: 1.3 !important; white-space: normal !important; text-align: left !important; text-decoration: none !important;
-  transition: background .15s ease, color .15s ease;
+/* Enlaces del menu lateral. Se usa ".menu.menu.menu" para que estas reglas
+   ganen SIEMPRE a las del menu horizontal original (style.css y las antiguas
+   de este archivo), que cambian alto, relleno y margen al pasar el raton y
+   hacian "brincar" las opciones. Geometria fija: el hover solo cambia color. */
+html.slim-sidebar .menu.menu.menu a {
+  display: flex !important; align-items: center; gap: 10px; box-sizing: border-box;
+  height: auto !important; min-height: 32px !important; line-height: 1.3 !important;
+  margin: 1px 0 !important; padding: 7px 10px !important; border: 0 !important; border-radius: 8px !important;
+  color: #c9d6e6 !important; background: transparent !important; box-shadow: none !important; transform: none !important;
+  font-size: 14px !important; font-weight: 400 !important; letter-spacing: 0 !important;
+  white-space: normal !important; text-align: left !important; text-decoration: none !important;
+  transition: background-color .15s ease, color .15s ease !important; cursor: pointer;
 }
-html.slim-sidebar .menu li a:hover,
-html.slim-sidebar .menu li ul a:hover,
-html.slim-sidebar .menu ul li ul li:hover ul li a:hover { background: rgba(255, 255, 255, .07) !important; color: #fff !important; }
-html.slim-sidebar .menu li a.slim-current { background: #1d3a5f !important; color: #fff !important; }
-html.slim-sidebar .menu li a.slim-current .slim-ico { color: #38bdf8; }
+html.slim-sidebar .menu.menu.menu li li li a { padding-left: 22px !important; }
+html.slim-sidebar .menu.menu.menu a:hover { background: rgba(255, 255, 255, .07) !important; color: #fff !important; }
+html.slim-sidebar .menu.menu.menu a.slim-current,
+html.slim-sidebar .menu.menu.menu a.slim-current:hover { background: #1d3a5f !important; color: #fff !important; }
 html.slim-sidebar .menu .arrow { display: none !important; }
 html.slim-sidebar .menu .slim-ico { flex: 0 0 18px; width: 18px; height: 18px; color: #7fa6c9; }
+html.slim-sidebar .menu a.slim-current .slim-ico { color: #38bdf8; }
 html.slim-sidebar .menu .slim-ico path { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-html.slim-sidebar .menu li a.slim-group,
-html.slim-sidebar .menu li:hover > a.slim-group { pointer-events: none; cursor: default; margin-top: 10px !important; padding: 6px 10px 2px !important; font-size: 12px !important; color: #6f8aa6 !important; background: transparent !important; letter-spacing: .02em; }
-html.slim-sidebar .menu li a.slim-subgroup,
-html.slim-sidebar .menu li:hover > a.slim-subgroup,
-html.slim-sidebar .menu li ul li:hover > a.slim-subgroup { pointer-events: none; cursor: default; padding: 6px 10px 2px 38px !important; font-size: 12px !important; color: #8ea6bf !important; background: transparent !important; }
-html.slim-sidebar .menu li li li a { padding-left: 22px !important; }
+
+/* Titulos de grupo (Ajustes, Datos, Sistema): plegables */
+html.slim-sidebar .menu.menu.menu a.slim-group {
+  min-height: 30px !important; margin-top: 8px !important; padding: 6px 10px !important;
+  font-size: 12px !important; color: #7f99b4 !important; background: transparent !important; letter-spacing: .03em !important;
+  user-select: none;
+}
+html.slim-sidebar .menu.menu.menu a.slim-group:hover { color: #fff !important; background: rgba(255, 255, 255, .05) !important; }
+html.slim-sidebar .menu a.slim-group .slim-chev { margin-left: auto; width: 14px; height: 14px; transition: transform .2s var(--slim-ease); }
+html.slim-sidebar .menu a.slim-group .slim-chev path { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+html.slim-sidebar .menu li.slim-collapsed > a.slim-group .slim-chev { transform: rotate(-90deg); }
+html.slim-sidebar .menu.menu.menu li.slim-collapsed > ul { display: none !important; }
+/* Subtitulos (Referencias, ROIs, Transmision en vivo): no clicables */
+html.slim-sidebar .menu.menu.menu a.slim-subgroup,
+html.slim-sidebar .menu.menu.menu a.slim-subgroup:hover {
+  min-height: 24px !important; padding: 6px 10px 2px 38px !important; cursor: default; pointer-events: none;
+  font-size: 12px !important; color: #8ea6bf !important; background: transparent !important;
+}
 
 .slim-side-brand { display: flex; align-items: center; gap: 10px; padding: 2px 6px 14px; margin-bottom: 4px; border-bottom: 1px solid #1d3a5f; }
 .slim-side-brand img { width: 40px; height: 40px; border-radius: 10px; background: #fff; padding: 2px; object-fit: contain; }
@@ -1136,7 +1151,7 @@ html.slim-sidebar #slim-theme-toggle { position: static !important; margin-left:
   html.slim-sidebar.slim-menu-open .menu { transform: none !important; }
   #slim-menu-btn { display: inline-flex; align-items: center; gap: 8px; position: fixed; top: 10px; left: 10px; z-index: 290;
     padding: 8px 14px; border: 0; border-radius: 10px; background: #0f1b2d; color: #fff; font-size: 15px; cursor: pointer; }
-  html.slim-menu-open #slim-menu-backdrop { display: block; position: fixed; inset: 0; z-index: 280; background: rgba(0, 0, 0, .35); }
+  html.slim-menu-open #slim-menu-backdrop { display: block; position: fixed; top: 0; right: 0; bottom: 0; left: 260px; z-index: 280; background: rgba(0, 0, 0, .35); }
 }
 
 /* ==========================================================================

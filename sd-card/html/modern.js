@@ -130,8 +130,15 @@
       if (!a.getAttribute("onclick") && !/^https?:/.test(a.getAttribute("href") || "")) {
         var depth = 0;
         for (var p = a.parentNode; p && p !== menu; p = p.parentNode) { if (p.tagName === "UL") depth++; }
-        a.classList.add(depth <= 1 ? "slim-group" : "slim-subgroup");
-        a.setAttribute("tabindex", "-1");
+        if (depth <= 1) {
+          a.classList.add("slim-group");
+          a.setAttribute("role", "button");
+          a.setAttribute("tabindex", "0");
+          a.insertAdjacentHTML("beforeend", '<svg class="slim-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>');
+        } else {
+          a.classList.add("slim-subgroup");
+          a.setAttribute("tabindex", "-1");
+        }
         return;
       }
       for (var i = 0; i < ICONS.length; i++) {
@@ -171,9 +178,36 @@
       Array.prototype.forEach.call(menu.querySelectorAll("a.slim-current"), function (x) { x.classList.remove("slim-current"); });
       if (link) link.classList.add("slim-current");
     }
+    // Grupos plegables (Ajustes, Datos, Sistema). Estado guardado en el navegador.
+    var GKEY = "slim-menu-groups";
+    var groups = Array.prototype.slice.call(menu.querySelectorAll("a.slim-group"));
+    function gname(a) { return (a.textContent || "").trim(); }
+    function saved() { try { return JSON.parse(localStorage.getItem(GKEY) || "null"); } catch (e) { return null; } }
+    function save() {
+      var open = groups.filter(function (a) { return !a.parentNode.classList.contains("slim-collapsed"); }).map(gname);
+      try { localStorage.setItem(GKEY, JSON.stringify(open)); } catch (e) {}
+    }
+    function setGroup(a, open) {
+      a.parentNode.classList.toggle("slim-collapsed", !open);
+      a.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    function openGroupOf(link) {
+      groups.forEach(function (g) { if (link && g.parentNode.contains(link)) setGroup(g, true); });
+    }
+    var initial = saved();
+    groups.forEach(function (g) { setGroup(g, initial ? initial.indexOf(gname(g)) >= 0 : false); });
+
+    function toggle(g) { setGroup(g, g.parentNode.classList.contains("slim-collapsed")); save(); }
+    menu.addEventListener("keydown", function (ev) {
+      var g = ev.target.closest ? ev.target.closest("a.slim-group") : null;
+      if (g && (ev.key === "Enter" || ev.key === " ")) { ev.preventDefault(); toggle(g); }
+    });
+
     menu.addEventListener("click", function (ev) {
       var link = ev.target.closest ? ev.target.closest("a") : null;
-      if (!link || !link.getAttribute("onclick")) return;
+      if (!link) return;
+      if (link.classList.contains("slim-group")) { ev.preventDefault(); toggle(link); return; }
+      if (!link.getAttribute("onclick")) return;
       if (/loadPage/.test(link.getAttribute("onclick"))) mark(link);
       root.classList.remove("slim-menu-open");
     });
@@ -183,7 +217,7 @@
         var page = (frame.contentWindow.location.pathname.split("/").pop() || "");
         if (!page) return;
         var hit = menu.querySelector('a[onclick*="' + page + '"]');
-        if (hit) mark(hit);
+        if (hit) { mark(hit); openGroupOf(hit); }
       } catch (e) {}
     });
 
